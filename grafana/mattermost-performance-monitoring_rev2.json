@@ -1018,12 +1018,12 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "1000.0 * rate(mattermost_http_request_duration_seconds_sum{instance=~\"$server\"}[1m]) /   rate(mattermost_http_request_duration_seconds_count{instance=~\"$server\"}[1m])",
+          "expr": "1000.0 * rate(mattermost_api_time_sum{instance=~\"$server\"}[1m]) /   rate(mattermost_api_time_count{instance=~\"$server\"}[1m])",
           "format": "time_series",
           "interval": "5s",
           "intervalFactor": 1,
           "legendFormat": "{{instance}}",
-          "metric": "mattermost_http_request_duration_seconds_sum",
+          "metric": "mattermost_api_time_sum",
           "refId": "A",
           "step": 5
         }
