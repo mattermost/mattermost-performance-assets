@@ -9,17 +9,18 @@
       "pluginName": "Prometheus"
     }
   ],
+  "__elements": [],
   "__requires": [
     {
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "7.2.1"
+      "version": "8.3.4"
     },
     {
       "type": "panel",
       "id": "graph",
-      "name": "Graph",
+      "name": "Graph (old)",
       "version": ""
     },
     {
@@ -38,30 +39,30 @@
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
         "type": "dashboard"
       }
     ]
   },
   "editable": true,
-  "gnetId": null,
+  "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1642654154812,
+  "iteration": 1646759397232,
   "links": [],
+  "liveNow": false,
   "panels": [
     {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
       "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -88,7 +89,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.2.1",
+      "pluginVersion": "8.3.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -111,9 +112,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "GetThreadsForUser duration",
       "tooltip": {
         "shared": true,
@@ -122,9 +121,7 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
@@ -132,25 +129,18 @@
         {
           "$$hashKey": "object:98",
           "format": "s",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "$$hashKey": "object:99",
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -158,13 +148,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -191,7 +174,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.2.1",
+      "pluginVersion": "8.3.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -214,9 +197,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "GetThreadsForUser Requests Per Second",
       "tooltip": {
         "shared": true,
@@ -225,9 +206,7 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
@@ -235,25 +214,18 @@
         {
           "$$hashKey": "object:396",
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "$$hashKey": "object:397",
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -261,13 +233,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -294,7 +259,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.2.1",
+      "pluginVersion": "8.3.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -304,23 +269,31 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "histogram_quantile (\n  0.99,\n  sum by (le,instance)(\n    rate(mattermost_db_store_time_bucket{instance=~\"$server\",method=\"ThreadStore.MarkAllAsReadInChannels\"}[5m])\n  )\n)",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "histogram_quantile (\n  0.99,\n  sum by (le,instance)(\n    rate(mattermost_db_store_time_bucket{instance=~\"$server\",method=\"ThreadStore.MarkAllAsReadByChannels\"}[5m])\n  )\n)",
           "interval": "",
           "legendFormat": "p99-{{instance}}",
           "refId": "A"
         },
         {
-          "expr": "histogram_quantile (\n  0.50,\n  sum by (le,instance)(\n    rate(mattermost_db_store_time_bucket{instance=~\"$server\",method=\"ThreadStore.MarkAllAsReadInChannels\"}[5m])\n  )\n)",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "histogram_quantile (\n  0.50,\n  sum by (le,instance)(\n    rate(mattermost_db_store_time_bucket{instance=~\"$server\",method=\"ThreadStore.MarkAllAsReadByChannels\"}[5m])\n  )\n)",
           "interval": "",
           "legendFormat": "p50-{{instance}}",
           "refId": "B"
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
-      "title": "MarkAllAsReadInChannels duration",
+      "title": "MarkAllAsReadByChannels duration",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -328,9 +301,7 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
@@ -338,25 +309,18 @@
         {
           "$$hashKey": "object:504",
           "format": "s",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "$$hashKey": "object:505",
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -364,13 +328,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -397,7 +354,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.2.1",
+      "pluginVersion": "8.3.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -407,23 +364,31 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(mattermost_db_store_time_count{instance=~\"$server\",method=\"ThreadStore.MarkAllAsReadInChannels\"}[1m])) by (instance)",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "sum(rate(mattermost_db_store_time_count{instance=~\"$server\",method=\"ThreadStore.MarkAllAsReadByChannels\"}[1m])) by (instance)",
           "interval": "",
           "legendFormat": "count-{{instance}}",
           "refId": "A"
         },
         {
-          "expr": "sum(rate(mattermost_db_store_time_count{instance=~\"$server\",method=\"ThreadStore.MarkAllAsReadInChannels\"}[1m]))",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "sum(rate(mattermost_db_store_time_count{instance=~\"$server\",method=\"ThreadStore.MarkAllAsReadByChannels\"}[1m]))",
           "interval": "",
           "legendFormat": "Total",
           "refId": "B"
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
-      "title": "MarkAllAsReadInChannels Requests Per Second",
+      "title": "MarkAllAsReadByChannels Requests Per Second",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -431,9 +396,7 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
@@ -441,38 +404,33 @@
         {
           "$$hashKey": "object:714",
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "$$hashKey": "object:715",
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     }
   ],
   "refresh": "10s",
-  "schemaVersion": 26,
+  "schemaVersion": 34,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": [
       {
-        "allValue": null,
         "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
         "definition": "label_values(instance)",
         "hide": 0,
         "includeAll": true,
@@ -480,13 +438,15 @@
         "multi": true,
         "name": "server",
         "options": [],
-        "query": "label_values(instance)",
+        "query": {
+          "query": "label_values(instance)",
+          "refId": "Prometheus-server-Variable-Query"
+        },
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
@@ -494,12 +454,13 @@
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Collapsed Reply Threads Performance",
   "uid": "cZY9yFJ7z",
-  "version": 4
+  "version": 5,
+  "weekStart": ""
 }
