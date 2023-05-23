@@ -1012,7 +1012,7 @@
             "uid": "${DS_LOADTEST-SOURCE}"
           },
           "editorMode": "code",
-          "expr": "sum(rate(mattermost_plugin_calls_rtc_rtp_packets_total[2m])) by (instance, direction, type)",
+          "expr": "sum(mattermost_plugin_calls_rtc_rtp_tracks_total) by (instance, direction, type)",
           "legendFormat": "{{ instance }} - {{direction}} - {{type}}",
           "range": true,
           "refId": "A"
@@ -1023,7 +1023,7 @@
             "uid": "${DS_LOADTEST-SOURCE}"
           },
           "editorMode": "code",
-          "expr": "sum(rate(rtcd_rtc_rtp_packets_total[2m])) by (instance, direction, type)",
+          "expr": "sum(rtcd_rtc_rtp_tracks_total) by (instance, direction, type)",
           "hide": false,
           "legendFormat": "rtcd - {{ instance }} - {{direction}} - {{type}}",
           "range": true,
@@ -1032,7 +1032,7 @@
       ],
       "thresholds": [],
       "timeRegions": [],
-      "title": "RTP Packets",
+      "title": "RTP Tracks",
       "tooltip": {
         "shared": true,
         "sort": 0,
