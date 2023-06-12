@@ -29,7 +29,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "9.3.6"
+      "version": "9.4.7"
     },
     {
       "type": "panel",
@@ -114,7 +114,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -215,7 +215,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -315,7 +315,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -415,7 +415,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -518,7 +518,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -792,7 +792,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -895,7 +895,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -997,7 +997,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1369,7 +1369,7 @@
           },
           "editorMode": "code",
           "expr": "rate(node_netstat_Udp_InDatagrams{instance=~\"$rtcd:9100\"}[2m])",
-          "legendFormat": "rtcd - {{ instance }} - UDP in",
+          "legendFormat": "rtcd - {{ instance }} - In - IPv4",
           "range": true,
           "refId": "A"
         },
@@ -1381,7 +1381,7 @@
           "editorMode": "code",
           "expr": "rate(node_netstat_Udp_OutDatagrams{instance=~\"$rtcd:9100\"}[2m])",
           "hide": false,
-          "legendFormat": "rtcd - {{ instance }} - UDP out",
+          "legendFormat": "rtcd - {{ instance }} - Out - IPv4",
           "range": true,
           "refId": "B"
         },
@@ -1393,7 +1393,7 @@
           "editorMode": "code",
           "expr": "rate(node_netstat_Udp_InErrors{instance=~\"$rtcd:9100\"}[2m])",
           "hide": false,
-          "legendFormat": "rtcd - {{ instance }} - UDP errors",
+          "legendFormat": "rtcd - {{ instance }} - Errors - IPv4",
           "range": true,
           "refId": "C"
         },
@@ -1405,7 +1405,7 @@
           "editorMode": "code",
           "expr": "rate(node_netstat_Udp_InDatagrams{instance=~\"$calls:9100\"}[2m])",
           "hide": false,
-          "legendFormat": "calls  - {{ instance }} - UDP in",
+          "legendFormat": "calls  - {{ instance }} - In - IPv4",
           "range": true,
           "refId": "D"
         },
@@ -1417,7 +1417,7 @@
           "editorMode": "code",
           "expr": "rate(node_netstat_Udp_OutDatagrams{instance=~\"$calls:9100\"}[2m])",
           "hide": false,
-          "legendFormat": "calls - {{ instance }} - UDP out",
+          "legendFormat": "calls - {{ instance }} - Out - IPv4",
           "range": true,
           "refId": "E"
         },
@@ -1429,17 +1429,194 @@
           "editorMode": "code",
           "expr": "rate(node_netstat_Udp_InErrors{instance=~\"$calls:9100\"}[2m])",
           "hide": false,
-          "legendFormat": "calls - {{ instance }} - UDP errors",
+          "legendFormat": "calls - {{ instance }} - Errors - IPv4",
           "range": true,
           "refId": "F"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_LOADTEST-SOURCE}"
+          },
+          "editorMode": "code",
+          "expr": "rate(node_netstat_Udp6_InDatagrams{instance=~\"$rtcd:9100\"}[2m])",
+          "hide": false,
+          "legendFormat": "rtcd - {{ instance }} - In - IPv6",
+          "range": true,
+          "refId": "G"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_LOADTEST-SOURCE}"
+          },
+          "editorMode": "code",
+          "expr": "rate(node_netstat_Udp6_OutDatagrams{instance=~\"$rtcd:9100\"}[2m])",
+          "hide": false,
+          "legendFormat": "rtcd - {{ instance }} - Out - IPv6",
+          "range": true,
+          "refId": "H"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_LOADTEST-SOURCE}"
+          },
+          "editorMode": "code",
+          "expr": "rate(node_netstat_Udp6_InErrors{instance=~\"$rtcd:9100\"}[2m])",
+          "hide": false,
+          "legendFormat": "rtcd - {{ instance }} - Errors - IPv6",
+          "range": true,
+          "refId": "I"
         }
       ],
       "title": "UDP Stats",
       "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_LOADTEST-SOURCE}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 48
+      },
+      "id": 62,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_LOADTEST-SOURCE}"
+          },
+          "editorMode": "code",
+          "expr": "node_sockstat_TCP_inuse{instance=~\"$rtcd:9100\"}",
+          "legendFormat": "rtcd - {{ instance }} -  Connections - IPv4",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_LOADTEST-SOURCE}"
+          },
+          "editorMode": "code",
+          "expr": "node_sockstat_TCP6_inuse{instance=~\"$rtcd:9100\"}",
+          "hide": false,
+          "legendFormat": "rtcd - {{ instance }} -  Connections - IPv6",
+          "range": true,
+          "refId": "E"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_LOADTEST-SOURCE}"
+          },
+          "editorMode": "code",
+          "expr": "rate(node_netstat_Tcp_InErrs{instance=~\"$rtcd:9100\"}[2m])",
+          "hide": false,
+          "legendFormat": "rtcd - {{ instance }} -  Errors",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_LOADTEST-SOURCE}"
+          },
+          "editorMode": "code",
+          "expr": "rate(node_netstat_TcpExt_TCPTimeouts{instance=~\"$rtcd:9100\"}[2m])",
+          "hide": false,
+          "legendFormat": "rtcd - {{ instance }} -  Timeouts",
+          "range": true,
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_LOADTEST-SOURCE}"
+          },
+          "editorMode": "code",
+          "expr": "rate(node_netstat_Tcp_RetransSegs{instance=~\"$rtcd:9100\"}[2m])",
+          "hide": false,
+          "legendFormat": "rtcd - {{ instance }} -  Retransmissions",
+          "range": true,
+          "refId": "D"
+        }
+      ],
+      "title": "TCP Stats",
+      "type": "timeseries"
     }
   ],
   "refresh": false,
-  "schemaVersion": 37,
+  "revision": 1,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -1533,13 +1710,13 @@
     ]
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Mattermost Calls - Performance Monitoring",
   "uid": "nwiOkDP45",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }
