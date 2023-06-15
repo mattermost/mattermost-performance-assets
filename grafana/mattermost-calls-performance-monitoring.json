@@ -1436,7 +1436,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOADTEST-SOURCE}"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
           "expr": "rate(node_netstat_Udp6_InDatagrams{instance=~\"$rtcd:9100\"}[2m])",
@@ -1448,7 +1448,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOADTEST-SOURCE}"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
           "expr": "rate(node_netstat_Udp6_OutDatagrams{instance=~\"$rtcd:9100\"}[2m])",
@@ -1460,7 +1460,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOADTEST-SOURCE}"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
           "expr": "rate(node_netstat_Udp6_InErrors{instance=~\"$rtcd:9100\"}[2m])",
@@ -1476,7 +1476,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_LOADTEST-SOURCE}"
+        "uid": "${DS_PROMETHEUS_PROD}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1553,7 +1553,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOADTEST-SOURCE}"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
           "expr": "node_sockstat_TCP_inuse{instance=~\"$rtcd:9100\"}",
@@ -1564,7 +1564,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOADTEST-SOURCE}"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
           "expr": "node_sockstat_TCP6_inuse{instance=~\"$rtcd:9100\"}",
@@ -1576,7 +1576,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOADTEST-SOURCE}"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
           "expr": "rate(node_netstat_Tcp_InErrs{instance=~\"$rtcd:9100\"}[2m])",
@@ -1588,7 +1588,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOADTEST-SOURCE}"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
           "expr": "rate(node_netstat_TcpExt_TCPTimeouts{instance=~\"$rtcd:9100\"}[2m])",
@@ -1600,7 +1600,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOADTEST-SOURCE}"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
           "expr": "rate(node_netstat_Tcp_RetransSegs{instance=~\"$rtcd:9100\"}[2m])",
