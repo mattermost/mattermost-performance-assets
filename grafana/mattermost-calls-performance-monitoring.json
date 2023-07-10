@@ -1,8 +1,8 @@
 {
   "__inputs": [
     {
-      "name": "DS_LOADTEST-SOURCE",
-      "label": "loadtest-source",
+      "name": "DS_PROMETHEUS_PROD",
+      "label": "Prometheus Prod",
       "description": "",
       "type": "datasource",
       "pluginId": "prometheus",
@@ -29,7 +29,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "9.3.6"
+      "version": "9.4.7"
     },
     {
       "type": "panel",
@@ -86,7 +86,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_LOADTEST-SOURCE}"
+        "uid": "${DS_PROMETHEUS_PROD}"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -114,7 +114,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -126,7 +126,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOADTEST-SOURCE}"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
           "expr": "avg(irate(mattermost_plugin_calls_process_cpu_seconds_total{instance=~\"$calls:$calls_api_port\"}[2m])* 100) by (instance)",
@@ -138,7 +138,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOADTEST-SOURCE}"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
           "expr": "avg(irate(rtcd_process_cpu_seconds_total{instance=~\"$rtcd:$rtcd_api_port\"}[2m])* 100) by (instance)",
@@ -187,7 +187,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_LOADTEST-SOURCE}"
+        "uid": "${DS_PROMETHEUS_PROD}"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -215,7 +215,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -227,7 +227,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOADTEST-SOURCE}"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
           "expr": "avg(go_memstats_heap_inuse_bytes{instance=~\"$calls:$calls_api_port\"}) by (instance)",
@@ -238,7 +238,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOADTEST-SOURCE}"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
           "expr": "avg(go_memstats_heap_inuse_bytes{instance=~\"$rtcd:$rtcd_api_port\"}) by (instance)",
@@ -287,7 +287,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_LOADTEST-SOURCE}"
+        "uid": "${DS_PROMETHEUS_PROD}"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -315,7 +315,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -327,7 +327,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOADTEST-SOURCE}"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
           "expr": "sum(mattermost_plugin_calls_rtc_sessions_total{instance=~\"$calls:$calls_api_port\"}) by (instance)",
@@ -338,7 +338,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOADTEST-SOURCE}"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
           "expr": "sum(rtcd_rtc_sessions_total{instance=~\"$rtcd:$rtcd_api_port\"}) by (instance)",
@@ -387,7 +387,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_LOADTEST-SOURCE}"
+        "uid": "${DS_PROMETHEUS_PROD}"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -415,7 +415,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -427,7 +427,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOADTEST-SOURCE}"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
           "expr": "sum(go_goroutines{instance=~\"$calls:$calls_api_port\"}) by (instance)",
@@ -439,7 +439,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOADTEST-SOURCE}"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
           "expr": "sum(go_goroutines{instance=~\"$rtcd:$rtcd_api_port\"}) by (instance)",
@@ -488,7 +488,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_LOADTEST-SOURCE}"
+        "uid": "${DS_PROMETHEUS_PROD}"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -518,7 +518,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -530,7 +530,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOADTEST-SOURCE}"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
           "expr": "sum(rate(mattermost_plugin_calls_websocket_events_total{instance=~\"$calls:$calls_api_port\"}[2m])) by (instance, type)",
@@ -574,7 +574,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_LOADTEST-SOURCE}"
+        "uid": "${DS_PROMETHEUS_PROD}"
       },
       "fieldConfig": {
         "defaults": {
@@ -651,7 +651,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOADTEST-SOURCE}"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
           "expr": "sum(rate(rtcd_ws_messages_total{instance=~\"$rtcd:$rtcd_api_port\"}[2m])) by (type, instance)",
@@ -666,7 +666,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_LOADTEST-SOURCE}"
+        "uid": "${DS_PROMETHEUS_PROD}"
       },
       "fieldConfig": {
         "defaults": {
@@ -743,7 +743,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOADTEST-SOURCE}"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
           "expr": "rtcd_ws_connections_total{instance=~\"$rtcd:$rtcd_api_port\"}",
@@ -762,7 +762,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_LOADTEST-SOURCE}"
+        "uid": "${DS_PROMETHEUS_PROD}"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -792,7 +792,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -804,7 +804,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOADTEST-SOURCE}"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
           "expr": "sum(increase(mattermost_plugin_calls_rtc_errors_total{instance=~\"$calls:$calls_api_port\"}[2m])) by (type, instance)",
@@ -816,7 +816,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOADTEST-SOURCE}"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
           "expr": "sum(increase(rtcd_rtc_errors_total{instance=~\"$rtcd:$rtcd_api_port\"}[2m])) by (type, instance)",
@@ -865,7 +865,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_LOADTEST-SOURCE}"
+        "uid": "${DS_PROMETHEUS_PROD}"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -895,7 +895,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -907,10 +907,10 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOADTEST-SOURCE}"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
-          "expr": "sum(increase(mattermost_plugin_calls_rtc_conn_states_total[2m])) by (instance, type)",
+          "expr": "sum(increase(mattermost_plugin_calls_rtc_conn_states_total{instance=~\"$calls:$calls_api_port\"}[2m])) by (instance, type)",
           "legendFormat": "{{ instance }} - {{ type }}",
           "range": true,
           "refId": "A"
@@ -918,10 +918,10 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOADTEST-SOURCE}"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
-          "expr": "sum(increase(rtcd_rtc_conn_states_total[2m])) by (instance, type)",
+          "expr": "sum(increase(rtcd_rtc_conn_states_total{instance=~\"$rtcd:$rtcd_api_port\"}[2m])) by (instance, type)",
           "hide": false,
           "legendFormat": "rtcd - {{ instance }} - {{ type }}",
           "range": true,
@@ -967,7 +967,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_LOADTEST-SOURCE}"
+        "uid": "${DS_PROMETHEUS_PROD}"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -997,7 +997,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1009,10 +1009,10 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOADTEST-SOURCE}"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
-          "expr": "sum(mattermost_plugin_calls_rtc_rtp_tracks_total) by (instance, direction, type)",
+          "expr": "sum(mattermost_plugin_calls_rtc_rtp_tracks_total{instance=~\"$calls:$calls_api_port\"}) by (instance, direction, type)",
           "legendFormat": "{{ instance }} - {{direction}} - {{type}}",
           "range": true,
           "refId": "A"
@@ -1020,10 +1020,10 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOADTEST-SOURCE}"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
-          "expr": "sum(rtcd_rtc_rtp_tracks_total) by (instance, direction, type)",
+          "expr": "sum(rtcd_rtc_rtp_tracks_total{instance=~\"$rtcd:$rtcd_api_port\"}) by (instance, direction, type)",
           "hide": false,
           "legendFormat": "rtcd - {{ instance }} - {{direction}} - {{type}}",
           "range": true,
@@ -1065,7 +1065,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_LOADTEST-SOURCE}"
+        "uid": "${DS_PROMETHEUS_PROD}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1143,7 +1143,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOADTEST-SOURCE}"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
           "expr": "(sum(rate(node_network_transmit_bytes_total{instance=~\"$rtcd:9100\"}[2m])) by (instance))*8",
@@ -1154,7 +1154,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOADTEST-SOURCE}"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
           "expr": "(sum(rate(node_network_receive_bytes_total{instance=~\"$rtcd:9100\"}[2m])) by (instance))*8",
@@ -1166,7 +1166,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOADTEST-SOURCE}"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
           "expr": "(sum(rate(node_network_transmit_bytes_total{instance=~\"$calls:9100\"}[2m])) by (instance))*8",
@@ -1178,7 +1178,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOADTEST-SOURCE}"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
           "expr": "(sum(rate(node_network_receive_bytes_total{instance=~\"$calls:9100\"}[2m])) by (instance))*8",
@@ -1194,7 +1194,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_LOADTEST-SOURCE}"
+        "uid": "${DS_PROMETHEUS_PROD}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1271,7 +1271,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOADTEST-SOURCE}"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
           "expr": "sum(rate(mattermost_plugin_calls_store_ops_total{instance=~\"$calls:$calls_api_port\"}[2m])) by (type, instance)",
@@ -1286,7 +1286,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_LOADTEST-SOURCE}"
+        "uid": "${DS_PROMETHEUS_PROD}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1365,81 +1365,258 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOADTEST-SOURCE}"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
           "expr": "rate(node_netstat_Udp_InDatagrams{instance=~\"$rtcd:9100\"}[2m])",
-          "legendFormat": "rtcd - {{ instance }} - UDP in",
+          "legendFormat": "rtcd - {{ instance }} - In - IPv4",
           "range": true,
           "refId": "A"
         },
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOADTEST-SOURCE}"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
           "expr": "rate(node_netstat_Udp_OutDatagrams{instance=~\"$rtcd:9100\"}[2m])",
           "hide": false,
-          "legendFormat": "rtcd - {{ instance }} - UDP out",
+          "legendFormat": "rtcd - {{ instance }} - Out - IPv4",
           "range": true,
           "refId": "B"
         },
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOADTEST-SOURCE}"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
           "expr": "rate(node_netstat_Udp_InErrors{instance=~\"$rtcd:9100\"}[2m])",
           "hide": false,
-          "legendFormat": "rtcd - {{ instance }} - UDP errors",
+          "legendFormat": "rtcd - {{ instance }} - Errors - IPv4",
           "range": true,
           "refId": "C"
         },
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOADTEST-SOURCE}"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
           "expr": "rate(node_netstat_Udp_InDatagrams{instance=~\"$calls:9100\"}[2m])",
           "hide": false,
-          "legendFormat": "calls  - {{ instance }} - UDP in",
+          "legendFormat": "calls  - {{ instance }} - In - IPv4",
           "range": true,
           "refId": "D"
         },
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOADTEST-SOURCE}"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
           "expr": "rate(node_netstat_Udp_OutDatagrams{instance=~\"$calls:9100\"}[2m])",
           "hide": false,
-          "legendFormat": "calls - {{ instance }} - UDP out",
+          "legendFormat": "calls - {{ instance }} - Out - IPv4",
           "range": true,
           "refId": "E"
         },
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOADTEST-SOURCE}"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
           "expr": "rate(node_netstat_Udp_InErrors{instance=~\"$calls:9100\"}[2m])",
           "hide": false,
-          "legendFormat": "calls - {{ instance }} - UDP errors",
+          "legendFormat": "calls - {{ instance }} - Errors - IPv4",
           "range": true,
           "refId": "F"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS_PROD}"
+          },
+          "editorMode": "code",
+          "expr": "rate(node_netstat_Udp6_InDatagrams{instance=~\"$rtcd:9100\"}[2m])",
+          "hide": false,
+          "legendFormat": "rtcd - {{ instance }} - In - IPv6",
+          "range": true,
+          "refId": "G"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS_PROD}"
+          },
+          "editorMode": "code",
+          "expr": "rate(node_netstat_Udp6_OutDatagrams{instance=~\"$rtcd:9100\"}[2m])",
+          "hide": false,
+          "legendFormat": "rtcd - {{ instance }} - Out - IPv6",
+          "range": true,
+          "refId": "H"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS_PROD}"
+          },
+          "editorMode": "code",
+          "expr": "rate(node_netstat_Udp6_InErrors{instance=~\"$rtcd:9100\"}[2m])",
+          "hide": false,
+          "legendFormat": "rtcd - {{ instance }} - Errors - IPv6",
+          "range": true,
+          "refId": "I"
         }
       ],
       "title": "UDP Stats",
       "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS_PROD}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 48
+      },
+      "id": 62,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS_PROD}"
+          },
+          "editorMode": "code",
+          "expr": "node_sockstat_TCP_inuse{instance=~\"$rtcd:9100\"}",
+          "legendFormat": "rtcd - {{ instance }} -  Connections - IPv4",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS_PROD}"
+          },
+          "editorMode": "code",
+          "expr": "node_sockstat_TCP6_inuse{instance=~\"$rtcd:9100\"}",
+          "hide": false,
+          "legendFormat": "rtcd - {{ instance }} -  Connections - IPv6",
+          "range": true,
+          "refId": "E"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS_PROD}"
+          },
+          "editorMode": "code",
+          "expr": "rate(node_netstat_Tcp_InErrs{instance=~\"$rtcd:9100\"}[2m])",
+          "hide": false,
+          "legendFormat": "rtcd - {{ instance }} -  Errors",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS_PROD}"
+          },
+          "editorMode": "code",
+          "expr": "rate(node_netstat_TcpExt_TCPTimeouts{instance=~\"$rtcd:9100\"}[2m])",
+          "hide": false,
+          "legendFormat": "rtcd - {{ instance }} -  Timeouts",
+          "range": true,
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS_PROD}"
+          },
+          "editorMode": "code",
+          "expr": "rate(node_netstat_Tcp_RetransSegs{instance=~\"$rtcd:9100\"}[2m])",
+          "hide": false,
+          "legendFormat": "rtcd - {{ instance }} -  Retransmissions",
+          "range": true,
+          "refId": "D"
+        }
+      ],
+      "title": "TCP Stats",
+      "type": "timeseries"
     }
   ],
   "refresh": false,
-  "schemaVersion": 37,
+  "revision": 1,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -1448,7 +1625,7 @@
         "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "${DS_LOADTEST-SOURCE}"
+          "uid": "${DS_PROMETHEUS_PROD}"
         },
         "definition": "label_values(instance)",
         "hide": 0,
@@ -1462,7 +1639,7 @@
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
-        "regex": "(.+):$calls_api_port",
+        "regex": "(.*):$calls_api_port",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
@@ -1471,7 +1648,7 @@
         "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "${DS_LOADTEST-SOURCE}"
+          "uid": "${DS_PROMETHEUS_PROD}"
         },
         "definition": "label_values(instance)",
         "hide": 0,
@@ -1533,13 +1710,13 @@
     ]
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Mattermost Calls - Performance Monitoring",
   "uid": "nwiOkDP45",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }
