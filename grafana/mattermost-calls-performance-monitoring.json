@@ -1092,6 +1092,260 @@
             "scaleDistribution": {
               "type": "linear"
             },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 40
+      },
+      "id": 56,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS_PROD}"
+          },
+          "editorMode": "code",
+          "expr": "sum(rate(mattermost_plugin_calls_store_ops_total{instance=~\"$calls:$calls_api_port\"}[2m])) by (type, instance)",
+          "legendFormat": "calls - {{ type }} - {{ instance }}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Store Ops",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS_PROD}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "E"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "custom.axisPlacement",
+                "value": "right"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 40
+      },
+      "id": 61,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS_PROD}"
+          },
+          "editorMode": "code",
+          "expr": "histogram_quantile(0.99, sum(rate(mattermost_plugin_calls_cluster_mutex_grab_time_bucket{instance=~\"$calls:$calls_api_port\"}[2m])) by (group,le))",
+          "instant": false,
+          "legendFormat": "Grab time p99-{{group}}",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS_PROD}"
+          },
+          "editorMode": "code",
+          "expr": "histogram_quantile(0.99, sum(rate(mattermost_plugin_calls_cluster_mutex_locked_time_bucket{instance=~\"$calls:$calls_api_port\"}[2m])) by (group,le))",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Lock time p99-{{group}}",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS_PROD}"
+          },
+          "editorMode": "code",
+          "expr": "sum(rate(mattermost_plugin_calls_cluster_mutex_grab_time_sum{instance=~\"$calls:$calls_api_port\"}[2m])) by (group) / sum(rate(mattermost_plugin_calls_cluster_mutex_grab_time_count{instance=~\"$calls:$calls_api_port\"}[2m])) by (group)",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Grab time avg-{{group}}",
+          "range": true,
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS_PROD}"
+          },
+          "editorMode": "code",
+          "expr": "sum(rate(mattermost_plugin_calls_cluster_mutex_locked_time_sum{instance=~\"$calls:$calls_api_port\"}[2m])) by (group) / sum(rate(mattermost_plugin_calls_cluster_mutex_locked_time_count{instance=~\"$calls:$calls_api_port\"}[2m])) by (group)",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Lock time avg-{{group}}",
+          "range": true,
+          "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS_PROD}"
+          },
+          "editorMode": "code",
+          "expr": "sum(increase(mattermost_plugin_calls_cluster_mutex_lock_retries_total{instance=~\"$calls:$calls_api_port\"}[2m])) by (group)",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Retries {{group}}",
+          "range": true,
+          "refId": "E"
+        }
+      ],
+      "title": "Cluster Mutexes",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS_PROD}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
             "showPoints": "never",
             "spanNulls": false,
             "stacking": {
@@ -1124,7 +1378,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 40
+        "y": 48
       },
       "id": 52,
       "options": {
@@ -1189,288 +1443,6 @@
         }
       ],
       "title": "Network RX/TX Rates",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS_PROD}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 40
-      },
-      "id": 56,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "table",
-          "placement": "right",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
-          },
-          "editorMode": "code",
-          "expr": "sum(rate(mattermost_plugin_calls_store_ops_total{instance=~\"$calls:$calls_api_port\"}[2m])) by (type, instance)",
-          "legendFormat": "calls - {{ type }} - {{ instance }}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Store Ops",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS_PROD}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "log": 2,
-              "type": "log"
-            },
-            "showPoints": "never",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "short"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 48
-      },
-      "id": 54,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "table",
-          "placement": "right",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
-          },
-          "editorMode": "code",
-          "expr": "rate(node_netstat_Udp_InDatagrams{instance=~\"$rtcd:9100\"}[2m])",
-          "legendFormat": "rtcd - {{ instance }} - In - IPv4",
-          "range": true,
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
-          },
-          "editorMode": "code",
-          "expr": "rate(node_netstat_Udp_OutDatagrams{instance=~\"$rtcd:9100\"}[2m])",
-          "hide": false,
-          "legendFormat": "rtcd - {{ instance }} - Out - IPv4",
-          "range": true,
-          "refId": "B"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
-          },
-          "editorMode": "code",
-          "expr": "rate(node_netstat_Udp_InErrors{instance=~\"$rtcd:9100\"}[2m])",
-          "hide": false,
-          "legendFormat": "rtcd - {{ instance }} - Errors - IPv4",
-          "range": true,
-          "refId": "C"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
-          },
-          "editorMode": "code",
-          "expr": "rate(node_netstat_Udp_InDatagrams{instance=~\"$calls:9100\"}[2m])",
-          "hide": false,
-          "legendFormat": "calls  - {{ instance }} - In - IPv4",
-          "range": true,
-          "refId": "D"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
-          },
-          "editorMode": "code",
-          "expr": "rate(node_netstat_Udp_OutDatagrams{instance=~\"$calls:9100\"}[2m])",
-          "hide": false,
-          "legendFormat": "calls - {{ instance }} - Out - IPv4",
-          "range": true,
-          "refId": "E"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
-          },
-          "editorMode": "code",
-          "expr": "rate(node_netstat_Udp_InErrors{instance=~\"$calls:9100\"}[2m])",
-          "hide": false,
-          "legendFormat": "calls - {{ instance }} - Errors - IPv4",
-          "range": true,
-          "refId": "F"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
-          },
-          "editorMode": "code",
-          "expr": "rate(node_netstat_Udp6_InDatagrams{instance=~\"$rtcd:9100\"}[2m])",
-          "hide": false,
-          "legendFormat": "rtcd - {{ instance }} - In - IPv6",
-          "range": true,
-          "refId": "G"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
-          },
-          "editorMode": "code",
-          "expr": "rate(node_netstat_Udp6_OutDatagrams{instance=~\"$rtcd:9100\"}[2m])",
-          "hide": false,
-          "legendFormat": "rtcd - {{ instance }} - Out - IPv6",
-          "range": true,
-          "refId": "H"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
-          },
-          "editorMode": "code",
-          "expr": "rate(node_netstat_Udp6_InErrors{instance=~\"$rtcd:9100\"}[2m])",
-          "hide": false,
-          "legendFormat": "rtcd - {{ instance }} - Errors - IPv6",
-          "range": true,
-          "refId": "I"
-        }
-      ],
-      "title": "UDP Stats",
       "type": "timeseries"
     },
     {
@@ -1612,6 +1584,196 @@
       ],
       "title": "TCP Stats",
       "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS_PROD}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "log": 2,
+              "type": "log"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 56
+      },
+      "id": 54,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS_PROD}"
+          },
+          "editorMode": "code",
+          "expr": "rate(node_netstat_Udp_InDatagrams{instance=~\"$rtcd:9100\"}[2m])",
+          "legendFormat": "rtcd - {{ instance }} - In - IPv4",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS_PROD}"
+          },
+          "editorMode": "code",
+          "expr": "rate(node_netstat_Udp_OutDatagrams{instance=~\"$rtcd:9100\"}[2m])",
+          "hide": false,
+          "legendFormat": "rtcd - {{ instance }} - Out - IPv4",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS_PROD}"
+          },
+          "editorMode": "code",
+          "expr": "rate(node_netstat_Udp_InErrors{instance=~\"$rtcd:9100\"}[2m])",
+          "hide": false,
+          "legendFormat": "rtcd - {{ instance }} - Errors - IPv4",
+          "range": true,
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS_PROD}"
+          },
+          "editorMode": "code",
+          "expr": "rate(node_netstat_Udp_InDatagrams{instance=~\"$calls:9100\"}[2m])",
+          "hide": false,
+          "legendFormat": "calls  - {{ instance }} - In - IPv4",
+          "range": true,
+          "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS_PROD}"
+          },
+          "editorMode": "code",
+          "expr": "rate(node_netstat_Udp_OutDatagrams{instance=~\"$calls:9100\"}[2m])",
+          "hide": false,
+          "legendFormat": "calls - {{ instance }} - Out - IPv4",
+          "range": true,
+          "refId": "E"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS_PROD}"
+          },
+          "editorMode": "code",
+          "expr": "rate(node_netstat_Udp_InErrors{instance=~\"$calls:9100\"}[2m])",
+          "hide": false,
+          "legendFormat": "calls - {{ instance }} - Errors - IPv4",
+          "range": true,
+          "refId": "F"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS_PROD}"
+          },
+          "editorMode": "code",
+          "expr": "rate(node_netstat_Udp6_InDatagrams{instance=~\"$rtcd:9100\"}[2m])",
+          "hide": false,
+          "legendFormat": "rtcd - {{ instance }} - In - IPv6",
+          "range": true,
+          "refId": "G"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS_PROD}"
+          },
+          "editorMode": "code",
+          "expr": "rate(node_netstat_Udp6_OutDatagrams{instance=~\"$rtcd:9100\"}[2m])",
+          "hide": false,
+          "legendFormat": "rtcd - {{ instance }} - Out - IPv6",
+          "range": true,
+          "refId": "H"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS_PROD}"
+          },
+          "editorMode": "code",
+          "expr": "rate(node_netstat_Udp6_InErrors{instance=~\"$rtcd:9100\"}[2m])",
+          "hide": false,
+          "legendFormat": "rtcd - {{ instance }} - Errors - IPv6",
+          "range": true,
+          "refId": "I"
+        }
+      ],
+      "title": "UDP Stats",
+      "type": "timeseries"
     }
   ],
   "refresh": false,
@@ -1717,6 +1879,6 @@
   "timezone": "",
   "title": "Mattermost Calls - Performance Monitoring",
   "uid": "nwiOkDP45",
-  "version": 2,
+  "version": 3,
   "weekStart": ""
 }
