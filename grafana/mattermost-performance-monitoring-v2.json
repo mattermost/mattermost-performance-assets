@@ -1431,13 +1431,15 @@
       "hiddenSeries": false,
       "id": 14,
       "legend": {
+        "alignAsTable": true,
         "avg": false,
-        "current": false,
+        "current": true,
         "max": false,
         "min": false,
+        "rightSide": true,
         "show": true,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": true,
       "linewidth": 1,
@@ -1460,9 +1462,11 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
+          "editorMode": "code",
           "expr": "mattermost_http_websockets_total{instance=~\"$server\"}",
           "interval": "",
-          "legendFormat": "{{instance}}",
+          "legendFormat": "{{instance}} - {{ origin_client}}",
+          "range": true,
           "refId": "A"
         },
         {
@@ -1474,6 +1478,19 @@
           "interval": "",
           "legendFormat": "Total",
           "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(mattermost_http_websockets_total{instance=~\"$server\"}) by (origin_client)",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Total - {{ origin_client }}",
+          "range": true,
+          "refId": "C"
         }
       ],
       "thresholds": [],
@@ -2719,7 +2736,7 @@
     }
   ],
   "refresh": "1m",
-  "schemaVersion": 38,
+  "schemaVersion": 39,
   "style": "dark",
   "tags": [],
   "templating": {
