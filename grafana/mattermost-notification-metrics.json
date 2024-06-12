@@ -516,25 +516,7 @@
         }
       ],
       "title": "Websocket Notification Stats",
-      "transformations": [
-        {
-          "id": "calculateField",
-          "options": {
-            "alias": "",
-            "binary": {
-              "left": "mattermost_notifications_total_ack{instance=\"host.docker.internal:8067\", job=\"mattermost\", type=\"websocket\"}",
-              "operator": "/",
-              "reducer": "sum",
-              "right": "mattermost_notifications_total{instance=\"host.docker.internal:8067\", job=\"mattermost\", type=\"websocket\"}"
-            },
-            "mode": "binary",
-            "reduce": {
-              "reducer": "delta"
-            },
-            "replaceFields": false
-          }
-        }
-      ],
+      "transformations": [],
       "type": "timeseries"
     },
     {
@@ -671,25 +653,7 @@
         }
       ],
       "title": "Websocket Sent vs. Not Sent",
-      "transformations": [
-        {
-          "id": "calculateField",
-          "options": {
-            "alias": "",
-            "binary": {
-              "left": "mattermost_notifications_total_ack{instance=\"host.docker.internal:8067\", job=\"mattermost\", type=\"websocket\"}",
-              "operator": "/",
-              "reducer": "sum",
-              "right": "mattermost_notifications_total{instance=\"host.docker.internal:8067\", job=\"mattermost\", type=\"websocket\"}"
-            },
-            "mode": "binary",
-            "reduce": {
-              "reducer": "delta"
-            },
-            "replaceFields": false
-          }
-        }
-      ],
+      "transformations": [],
       "type": "stat"
     },
     {
@@ -851,25 +815,7 @@
         }
       ],
       "title": "Push Notification Stats",
-      "transformations": [
-        {
-          "id": "calculateField",
-          "options": {
-            "alias": "",
-            "binary": {
-              "left": "mattermost_notifications_total_ack{instance=\"host.docker.internal:8067\", job=\"mattermost\", type=\"websocket\"}",
-              "operator": "/",
-              "reducer": "sum",
-              "right": "mattermost_notifications_total{instance=\"host.docker.internal:8067\", job=\"mattermost\", type=\"websocket\"}"
-            },
-            "mode": "binary",
-            "reduce": {
-              "reducer": "delta"
-            },
-            "replaceFields": false
-          }
-        }
-      ],
+      "transformations": [],
       "type": "timeseries"
     },
     {
@@ -1268,6 +1214,6 @@
   "timezone": "",
   "title": "Mattermost Notification Health",
   "uid": "ab852b98-e754-4e9f-9791-6296e9fd127c",
-  "version": 4,
+  "version": 5,
   "weekStart": ""
 }
