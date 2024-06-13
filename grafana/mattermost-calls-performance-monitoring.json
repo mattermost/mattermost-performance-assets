@@ -21,13 +21,6 @@
       "label": "calls_metrics_port",
       "value": "8067",
       "description": ""
-    },
-    {
-      "name": "VAR_OFFLOADER_METRICS_PORT",
-      "type": "constant",
-      "label": "offloader_metrics_port",
-      "value": "9100",
-      "description": ""
     }
   ],
   "__elements": {},
@@ -2920,7 +2913,7 @@
             "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
-          "expr": "100 - 100 * avg(irate(node_cpu_seconds_total{instance=~\"$offloader:$offloader_metrics_port\",mode=\"idle\"}[2m])) by (instance)",
+          "expr": "100 - 100 * avg(irate(node_cpu_seconds_total{instance=~\"$offloader:9100\",mode=\"idle\"}[2m])) by (instance)",
           "hide": false,
           "legendFormat": "offloader - {{ instance }}",
           "range": true,
@@ -3019,7 +3012,7 @@
             "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
-          "expr": "node_memory_MemTotal_bytes{instance=~\"$offloader:$offloader_metrics_port\"}",
+          "expr": "node_memory_MemTotal_bytes{instance=~\"$offloader:9100\"}",
           "hide": true,
           "legendFormat": "mem total - {{ instance }}",
           "range": true,
@@ -3031,7 +3024,7 @@
             "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
-          "expr": "node_memory_MemTotal_bytes{instance=~\"$offloader:$offloader_metrics_port\"} - node_memory_MemAvailable_bytes{instance=~\"$offloader:$offloader_metrics_port\"}",
+          "expr": "node_memory_MemTotal_bytes{instance=~\"$offloader:9100\"} - node_memory_MemAvailable_bytes{instance=~\"$offloader:9100\"}",
           "hide": false,
           "legendFormat": "mem used - {{ instance }}",
           "range": true,
@@ -3563,30 +3556,10 @@
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
-        "regex": "(.*offloader.*):$offloader_metrics_port",
+        "regex": "(.*offloader.*):9100",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
-      },
-      {
-        "hide": 2,
-        "label": "",
-        "name": "offloader_metrics_port",
-        "query": "${VAR_OFFLOADER_METRICS_PORT}",
-        "skipUrlSync": false,
-        "type": "constant",
-        "current": {
-          "value": "${VAR_OFFLOADER_METRICS_PORT}",
-          "text": "${VAR_OFFLOADER_METRICS_PORT}",
-          "selected": false
-        },
-        "options": [
-          {
-            "value": "${VAR_OFFLOADER_METRICS_PORT}",
-            "text": "${VAR_OFFLOADER_METRICS_PORT}",
-            "selected": false
-          }
-        ]
       }
     ]
   },
