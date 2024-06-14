@@ -76,6 +76,7 @@
       }
     ]
   },
+  "description": "A dashboard displaying notification health metrics, and distributions around notifications that were not sent, both deliberate and indeliberate. \n\nThe dashboard is broken in half by Websocket events (POSTED events from the server to web clients) and Push events (events sent to the push proxy to be received by mobile clients).",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
@@ -88,6 +89,7 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
+      "description": "A running total of the number of notifiable websocket events acknowledged by the server vs. the number sent. A notifiable event is any POSTED event that may result in a notification on the web client.\n\nThe smaller number indicates the percent change over the selected date range, while the larger number is the absolute total.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -189,7 +191,6 @@
         }
       ],
       "title": "Websocket Notification Health",
-      "transformations": [],
       "type": "stat"
     },
     {
@@ -197,6 +198,7 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
+      "description": "A running total of the number of push notifications acknowledged by the server vs. the number sent.\n\nThe smaller number indicates the percent change over the selected date range, while the larger number is the absolute total.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -308,7 +310,6 @@
         }
       ],
       "title": "Push Notification Health",
-      "transformations": [],
       "type": "stat"
     },
     {
@@ -316,10 +317,12 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
+      "description": "A graph that shows the change in the notification health over time, with respect to websocket notifiable events. As the gap between sent vs. acked widens, the number of not acknowledged events will go up (calculated as the difference of the above values)",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
+            "fixedColor": "#808080",
+            "mode": "fixed"
           },
           "custom": {
             "axisCenteredZero": false,
@@ -366,31 +369,44 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Total Notification Errors"
+              "options": "Notifiable Events Sent"
             },
             "properties": [
               {
-                "id": "thresholds",
+                "id": "color",
                 "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green",
-                      "value": null
-                    },
-                    {
-                      "color": "yellow",
-                      "value": 1
-                    },
-                    {
-                      "color": "orange",
-                      "value": 5
-                    },
-                    {
-                      "color": "red",
-                      "value": 10
-                    }
-                  ]
+                  "fixedColor": "blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Notifiable Events Acknowledged"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Not Acknowledged"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "yellow",
+                  "mode": "fixed"
                 }
               }
             ]
@@ -455,57 +471,6 @@
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "disableTextWrap": false,
-          "editorMode": "code",
-          "expr": "sum(mattermost_notifications_success{type=\"websocket\"}) OR vector(0)",
-          "fullMetaSearch": false,
-          "hide": true,
-          "includeNullMetadata": true,
-          "instant": false,
-          "legendFormat": "Total Notifications Sent",
-          "range": true,
-          "refId": "Success",
-          "useBackend": false
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "disableTextWrap": false,
-          "editorMode": "code",
-          "expr": "sum(mattermost_notifications_error{type=\"websocket\"}) OR vector(0)",
-          "fullMetaSearch": false,
-          "hide": true,
-          "includeNullMetadata": true,
-          "instant": false,
-          "legendFormat": "Total Notification Errors",
-          "range": true,
-          "refId": "Error",
-          "useBackend": false
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "disableTextWrap": false,
-          "editorMode": "code",
-          "expr": "sum(mattermost_notifications_not_sent{type=\"websocket\"}) OR vector(0)",
-          "fullMetaSearch": false,
-          "hide": true,
-          "includeNullMetadata": true,
-          "instant": false,
-          "legendFormat": "Total Notifications Not Sent",
-          "range": true,
-          "refId": "NotSent",
-          "useBackend": false
-        },
-        {
-          "datasource": {
             "type": "__expr__",
             "uid": "${DS_EXPRESSION}"
           },
@@ -516,7 +481,6 @@
         }
       ],
       "title": "Websocket Notification Stats",
-      "transformations": [],
       "type": "timeseries"
     },
     {
@@ -524,12 +488,25 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
+      "description": "Displays the total number of acknowledged notifiable events over the given range. If \"Bad range\" is shown, that means the counter was reset and the value cannot be accurately determined. It is advised to pick a date range in which the counter has not been reset.\n\nThe Sent number indicates the number of events that resulted in a notification to the end user, and not sent is the number of events where the system decided not to send the notification.\n\nIf shown, Unknown indicates the number of events where we could not determine the result of the event. This usually indicates an out-of-date Desktop App.",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "fixed"
           },
-          "mappings": [],
+          "mappings": [
+            {
+              "options": {
+                "from": -1e+308,
+                "result": {
+                  "index": 0,
+                  "text": "Bad range"
+                },
+                "to": -1
+              },
+              "type": "range"
+            }
+          ],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -544,31 +521,44 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Total Notification Errors"
+              "options": "Total Notifications Unknown"
             },
             "properties": [
               {
-                "id": "thresholds",
+                "id": "color",
                 "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green",
-                      "value": null
-                    },
-                    {
-                      "color": "yellow",
-                      "value": 1
-                    },
-                    {
-                      "color": "orange",
-                      "value": 5
-                    },
-                    {
-                      "color": "red",
-                      "value": 10
-                    }
-                  ]
+                  "fixedColor": "yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Total Notifications Not Sent"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Total Notifications Sent"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "green",
+                  "mode": "fixed"
                 }
               }
             ]
@@ -653,7 +643,6 @@
         }
       ],
       "title": "Websocket Sent vs. Not Sent",
-      "transformations": [],
       "type": "stat"
     },
     {
@@ -661,10 +650,11 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
+      "description": "A graph that shows the change in the notification health over time, with respect to push notifications. As the gap between sent vs. acked widens, the number of not acknowledged events will go up (calculated as the difference of the above values)",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
+            "mode": "fixed"
           },
           "custom": {
             "axisCenteredZero": false,
@@ -711,31 +701,44 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Push Notification Errors"
+              "options": "Push Notifications Sent"
             },
             "properties": [
               {
-                "id": "thresholds",
+                "id": "color",
                 "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green",
-                      "value": null
-                    },
-                    {
-                      "color": "yellow",
-                      "value": 1
-                    },
-                    {
-                      "color": "orange",
-                      "value": 5
-                    },
-                    {
-                      "color": "red",
-                      "value": 10
-                    }
-                  ]
+                  "fixedColor": "blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Push Notifications Acknowledged"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Not Acknowledged"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "yellow",
+                  "mode": "fixed"
                 }
               }
             ]
@@ -792,19 +795,6 @@
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "expr": "sum(mattermost_notifications_error{type=\"push\"}) OR vector(0)",
-          "hide": true,
-          "instant": false,
-          "legendFormat": "Push Notification Errors",
-          "range": true,
-          "refId": "Error"
-        },
-        {
-          "datasource": {
             "type": "__expr__",
             "uid": "${DS_EXPRESSION}"
           },
@@ -815,7 +805,6 @@
         }
       ],
       "title": "Push Notification Stats",
-      "transformations": [],
       "type": "timeseries"
     },
     {
@@ -823,6 +812,7 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
+      "description": "A breakdown of any errors affecting the sending of websocket notifications by reason. These may occur at the server, or the client and do not directly correlate with the notifiable event success.\n\nErrors that occur here should show up in the server notification logs, and can be investigated there.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -900,6 +890,7 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
+      "description": "Displays the distribution of reasons that users may not be sent notifications via the websocket when handled correctly by the system. This is helpful to diagnose where user settings or system design may contribute to missing notifications.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -971,6 +962,7 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
+      "description": "A breakdown of any errors affecting the sending of push notifications by reason. These may occur at the server, or the client and do not directly correlate with the notifiable event success.\n",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1043,6 +1035,7 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
+      "description": "Displays the distribution of reasons that users may not be sent push notifications when handled correctly by the system. This is helpful to diagnose where user settings or system design may contribute to missing notifications.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1114,27 +1107,68 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
+      "description": "Shows a breakdown of reasons that email notifications may fail to be sent from the server.",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "thresholds"
           },
           "displayName": "${__series.name}",
-          "mappings": [],
+          "mappings": [
+            {
+              "options": {
+                "from": -1e+308,
+                "result": {
+                  "index": 0,
+                  "text": "Bad range"
+                },
+                "to": -1
+              },
+              "type": "range"
+            }
+          ],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
+                "color": "green",
+                "value": null
               }
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "NotSent"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "Error"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 5,
@@ -1150,7 +1184,7 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "diff"
           ],
           "fields": "",
           "values": false
@@ -1168,7 +1202,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "sum by(reason) (max_over_time(mattermost_notifications_not_sent{type=\"email\"}[$__range]) or vector(0) - max_over_time(mattermost_notifications_not_sent{type=\"email\"}[$__range] offset $__range))",
+          "expr": "sum by(reason) (mattermost_notifications_not_sent{type=\"email\"})",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -1184,14 +1218,14 @@
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "sum by(reason) (max_over_time(mattermost_notifications_error{type=\"email\"}[$__range]) or vector(0) - max_over_time(mattermost_notifications_error{type=\"email\"}[$__range] offset $__range))",
+          "expr": "sum by(reason) (mattermost_notifications_error{type=\"email\"})",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
           "instant": false,
           "legendFormat": "{{reason}}",
           "range": true,
-          "refId": "A",
+          "refId": "Error",
           "useBackend": false
         }
       ],
@@ -1207,13 +1241,13 @@
     "list": []
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Mattermost Notification Health",
-  "uid": "ab852b98-e754-4e9f-9791-6296e9fd127c",
+  "uid": "c24e2f0f-cd39-4837-99ca-03b2c321fd87",
   "version": 5,
   "weekStart": ""
 }
