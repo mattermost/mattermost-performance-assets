@@ -76,7 +76,7 @@
       }
     ]
   },
-  "description": "A dashboard displaying notification health metrics, and distributions around notifications that were not sent, both deliberate and indeliberate. \n\nThe dashboard is broken in half by Websocket events (POSTED events from the server to web clients) and Push events (events sent to the push proxy to be received by mobile clients).",
+  "description": "A dashboard displaying notification health metrics, and distributions around notifications that were not sent, both deliberate and indeliberate. \n\nThe dashboard is split in half by Websocket events (POSTED events from the server to web clients) and Push events (events sent to the push proxy to be received by mobile clients).",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
