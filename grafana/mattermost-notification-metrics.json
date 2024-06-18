@@ -488,7 +488,7 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
-      "description": "Displays the total number of acknowledged notifiable events over the given range. If \"Bad range\" is shown, that means the counter was reset and the value cannot be accurately determined. It is advised to pick a date range in which the counter has not been reset.\n\nThe Sent number indicates the number of events that resulted in a notification to the end user, and not sent is the number of events where the system decided not to send the notification.\n\nIf shown, Unknown indicates the number of events where we could not determine the result of the event. This usually indicates an out-of-date Desktop App.",
+      "description": "Displays the total number of acknowledged notifiable events over the given range. If \"Bad range\" is shown, that means the counter was reset and the value cannot be accurately determined. It is advised to pick a date range in which the counter has not been reset (resets will happen after the server has been restarted).\n\nThe Sent number indicates the number of events that resulted in a notification to the end user, and not sent is the number of events where the system decided not to send the notification.\n\nIf shown, Unknown indicates the number of events where we could not determine the result of the event. This usually indicates an out-of-date Desktop App.",
       "fieldConfig": {
         "defaults": {
           "color": {
