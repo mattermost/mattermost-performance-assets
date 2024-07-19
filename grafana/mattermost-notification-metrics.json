@@ -96,6 +96,8 @@
             "mode": "thresholds"
           },
           "mappings": [],
+          "max": 1,
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -215,6 +217,8 @@
               "type": "value"
             }
           ],
+          "max": 1,
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -242,7 +246,7 @@
       },
       "gridPos": {
         "h": 7,
-        "w": 12,
+        "w": 6,
         "x": 12,
         "y": 0
       },
@@ -272,8 +276,8 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
-          "editorMode": "code",
-          "expr": "sum(mattermost_notifications_total{type=\"push\"}) OR vector(0)",
+          "editorMode": "builder",
+          "expr": "sum(mattermost_notifications_total{type=\"push\", platform=\"android\"}) OR vector(0)",
           "fullMetaSearch": false,
           "hide": true,
           "includeNullMetadata": true,
@@ -288,8 +292,8 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
-          "editorMode": "code",
-          "expr": "sum(mattermost_notifications_total_ack{type=\"push\"}) OR vector(0)",
+          "editorMode": "builder",
+          "expr": "sum(mattermost_notifications_total_ack{type=\"push\", platform=\"android\"}) OR vector(0)",
           "fullMetaSearch": false,
           "hide": true,
           "includeNullMetadata": true,
@@ -309,7 +313,128 @@
           "type": "math"
         }
       ],
-      "title": "Push Notification Health",
+      "title": "Android Push Notification Health",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "A running total of the number of push notifications acknowledged by the server vs. the number sent.\n\nThe smaller number indicates the percent change over the selected date range, while the larger number is the absolute total.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "NaN": {
+                  "index": 0,
+                  "text": "No notifications sent"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "max": 1,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 0.8
+              },
+              {
+                "color": "yellow",
+                "value": 0.9
+              },
+              {
+                "color": "green",
+                "value": 0.95
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 18,
+        "y": 0
+      },
+      "id": 12,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": true,
+        "text": {},
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.0.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "sum(mattermost_notifications_total{type=\"push\", platform=\"ios\"}) OR vector(0)",
+          "fullMetaSearch": false,
+          "hide": true,
+          "includeNullMetadata": true,
+          "instant": false,
+          "range": true,
+          "refId": "Sent",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "sum(mattermost_notifications_total_ack{type=\"push\", platform=\"ios\"}) OR vector(0)",
+          "fullMetaSearch": false,
+          "hide": true,
+          "includeNullMetadata": true,
+          "instant": false,
+          "range": true,
+          "refId": "Acked",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "__expr__",
+            "uid": "${DS_EXPRESSION}"
+          },
+          "expression": "$Acked/$Sent",
+          "hide": false,
+          "refId": "Notification Health",
+          "type": "math"
+        }
+      ],
+      "title": "iOS Push Notification Health",
       "type": "stat"
     },
     {
@@ -1131,8 +1256,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           }
@@ -1248,6 +1372,6 @@
   "timezone": "",
   "title": "Mattermost Notification Health",
   "uid": "ab852b98-e754-4e9f-9791-6296e9fd127c",
-  "version": 3,
+  "version": 4,
   "weekStart": ""
 }
