@@ -1,4 +1,48 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_PROMETHEUS_PROD",
+      "label": "Prometheus Prod",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    },
+    {
+      "name": "VAR_RATE",
+      "type": "constant",
+      "label": "rate",
+      "value": "1h",
+      "description": ""
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "11.1.0"
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -18,7 +62,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 382,
+  "id": null,
   "links": [],
   "panels": [
     {
@@ -37,7 +81,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "P27C405C01959D762"
+        "uid": "${DS_PROMETHEUS_PROD}"
       },
       "description": "Load times between the moment the app is initialized and the moment the target screen (Home, Channel or Thread) is shown in the screen.\n\nEach point in the graph shows the percentile of the  events during the last hour.",
       "fieldConfig": {
@@ -155,7 +199,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P27C405C01959D762"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -172,7 +216,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P27C405C01959D762"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -188,7 +232,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P27C405C01959D762"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -209,7 +253,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "P27C405C01959D762"
+        "uid": "${DS_PROMETHEUS_PROD}"
       },
       "description": "Load times between the moment the app is initialized and the moment the target screen (Home, Channel or Thread) is shown in the screen.\n\nThese values represent the percentile of all events since the last metrics restart.",
       "fieldConfig": {
@@ -304,7 +348,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P27C405C01959D762"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -321,7 +365,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P27C405C01959D762"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -338,7 +382,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P27C405C01959D762"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -359,7 +403,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "P27C405C01959D762"
+        "uid": "${DS_PROMETHEUS_PROD}"
       },
       "description": "Load times between the moment the app is initialized and the moment the target screen (Home, Channel or Thread) is shown in the screen.\n\nThis graph represents all events generated since the last metrics restart.",
       "fieldConfig": {
@@ -477,7 +521,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P27C405C01959D762"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -494,7 +538,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P27C405C01959D762"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -510,7 +554,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P27C405C01959D762"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -531,7 +575,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "P27C405C01959D762"
+        "uid": "${DS_PROMETHEUS_PROD}"
       },
       "description": "Load times between the moment the app is initialized and the moment the target screen (Home, Channel or Thread) is shown in the screen.\n\nThese numbers represent the number of events since the last metrics restart.",
       "fieldConfig": {
@@ -618,7 +662,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P27C405C01959D762"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -634,7 +678,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P27C405C01959D762"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -651,7 +695,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P27C405C01959D762"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -685,7 +729,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "P27C405C01959D762"
+        "uid": "${DS_PROMETHEUS_PROD}"
       },
       "description": "Channel switch represents the time between the user clicks on a channel name, and the app shows the latest post in that channel.\n\nEach point in the graph shows the percentile of the  events during the last hour.",
       "fieldConfig": {
@@ -803,7 +847,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P27C405C01959D762"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -819,7 +863,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P27C405C01959D762"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -836,7 +880,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P27C405C01959D762"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -857,7 +901,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "P27C405C01959D762"
+        "uid": "${DS_PROMETHEUS_PROD}"
       },
       "description": "Channel switch represents the time between the user clicks on a channel name, and the app shows the latest post in that channel.\n\nThese values represent the percentile of all events since the last metrics restart.",
       "fieldConfig": {
@@ -952,7 +996,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P27C405C01959D762"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -969,7 +1013,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P27C405C01959D762"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -986,7 +1030,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P27C405C01959D762"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -1007,7 +1051,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "P27C405C01959D762"
+        "uid": "${DS_PROMETHEUS_PROD}"
       },
       "description": "Channel switch represents the time between the user clicks on a channel name, and the app shows the latest post in that channel.\n\nThis graph represents all events generated since the last metrics restart.",
       "fieldConfig": {
@@ -1052,8 +1096,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1125,7 +1168,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P27C405C01959D762"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -1142,7 +1185,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P27C405C01959D762"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -1158,7 +1201,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P27C405C01959D762"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -1179,7 +1222,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "P27C405C01959D762"
+        "uid": "${DS_PROMETHEUS_PROD}"
       },
       "description": "Channel switch represents the time between the user clicks on a channel name, and the app shows the latest post in that channel.\n\nThese numbers represent the number of events since the last metrics restart.",
       "fieldConfig": {
@@ -1192,8 +1235,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           }
@@ -1266,7 +1308,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P27C405C01959D762"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -1282,7 +1324,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P27C405C01959D762"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -1299,7 +1341,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P27C405C01959D762"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -1333,7 +1375,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "P27C405C01959D762"
+        "uid": "${DS_PROMETHEUS_PROD}"
       },
       "description": "Team switch represents the time between the user taps on a team, and the full category screen changes to the one of the new team.\n\nEach point in the graph shows the percentile of the  events during the last hour.",
       "fieldConfig": {
@@ -1378,8 +1420,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1451,7 +1492,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P27C405C01959D762"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -1468,7 +1509,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P27C405C01959D762"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -1484,7 +1525,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P27C405C01959D762"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -1505,7 +1546,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "P27C405C01959D762"
+        "uid": "${DS_PROMETHEUS_PROD}"
       },
       "description": "Team switch represents the time between the user taps on a team, and the full category screen changes to the one of the new team.\n\nThese values represent the percentile of all events since the last metrics restart.",
       "fieldConfig": {
@@ -1518,8 +1559,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "#EAB839",
@@ -1600,7 +1640,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P27C405C01959D762"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -1617,7 +1657,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P27C405C01959D762"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -1634,7 +1674,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P27C405C01959D762"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -1655,7 +1695,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "P27C405C01959D762"
+        "uid": "${DS_PROMETHEUS_PROD}"
       },
       "description": "Team switch represents the time between the user taps on a team, and the full category screen changes to the one of the new team.\n\nThis graph represents all events generated since the last metrics restart.",
       "fieldConfig": {
@@ -1700,8 +1740,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1773,7 +1812,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P27C405C01959D762"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -1790,7 +1829,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P27C405C01959D762"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -1806,7 +1845,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P27C405C01959D762"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -1827,7 +1866,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "P27C405C01959D762"
+        "uid": "${DS_PROMETHEUS_PROD}"
       },
       "description": "Team switch represents the time between the user taps on a team, and the full category screen changes to the one of the new team.\n\nThese numbers represent the number of events since the last metrics restart.",
       "fieldConfig": {
@@ -1840,8 +1879,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           }
@@ -1914,7 +1952,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P27C405C01959D762"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -1930,7 +1968,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P27C405C01959D762"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -1947,7 +1985,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P27C405C01959D762"
+            "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -1975,9 +2013,21 @@
         "description": "rate for measurements",
         "hide": 2,
         "name": "rate",
-        "query": "1h",
+        "query": "${VAR_RATE}",
         "skipUrlSync": false,
-        "type": "constant"
+        "type": "constant",
+        "current": {
+          "value": "${VAR_RATE}",
+          "text": "${VAR_RATE}",
+          "selected": false
+        },
+        "options": [
+          {
+            "value": "${VAR_RATE}",
+            "text": "${VAR_RATE}",
+            "selected": false
+          }
+        ]
       },
       {
         "current": {
@@ -2017,18 +2067,10 @@
         "type": "custom"
       },
       {
-        "current": {
-          "selected": true,
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
-        },
+        "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "P27C405C01959D762"
+          "uid": "${DS_PROMETHEUS_PROD}"
         },
         "definition": "label_values(mattermost_mobileapp_mobile_load_count,namespace)",
         "hide": 0,
@@ -2055,7 +2097,7 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "Daniel Test for Mobile Metrics",
+  "title": "Mobile Performance Metrics",
   "uid": "ddp4txrlmyg3kc",
   "version": 26,
   "weekStart": ""
