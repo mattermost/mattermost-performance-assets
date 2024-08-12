@@ -1159,42 +1159,7 @@
           },
           "mappings": []
         },
-        "overrides": [
-          {
-            "__systemRef": "hideSeriesFrom",
-            "matcher": {
-              "id": "byNames",
-              "options": {
-                "mode": "exclude",
-                "names": [
-                  "desktop_notification_hook",
-                  "not_following_thread",
-                  "notifications_permission_denied",
-                  "notifications_permission_previously_denied",
-                  "os_dnd",
-                  "system_message",
-                  "thread_is_open",
-                  "too_many_posts",
-                  "user_status",
-                  "channel_is_open",
-                  "channel_muted"
-                ],
-                "prefix": "All except:",
-                "readOnly": true
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": true
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 14,
@@ -1339,37 +1304,7 @@
           },
           "mappings": []
         },
-        "overrides": [
-          {
-            "__systemRef": "hideSeriesFrom",
-            "matcher": {
-              "id": "byNames",
-              "options": {
-                "mode": "exclude",
-                "names": [
-                  "channel_muted",
-                  "not_mentioned",
-                  "notify_level_none",
-                  "session_expired",
-                  "system_message",
-                  "user_status"
-                ],
-                "prefix": "All except:",
-                "readOnly": true
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": true
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 14,
@@ -1564,7 +1499,7 @@
   "timepicker": {},
   "timezone": "",
   "title": "Mattermost Notification Health",
-  "uid": "b03eca8a-6ee3-443e-b16c-7b03f2eb64e8",
-  "version": 16,
+  "uid": "ab852b98-e754-4e9f-9791-6296e9fd127c",
+  "version": 5,
   "weekStart": ""
 }
