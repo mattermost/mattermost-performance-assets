@@ -33,7 +33,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "10.0.3"
+      "version": "11.1.0"
     },
     {
       "type": "panel",
@@ -102,8 +102,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
-                "value": null
+                "color": "red"
               },
               {
                 "color": "orange",
@@ -125,7 +124,7 @@
       },
       "gridPos": {
         "h": 7,
-        "w": 12,
+        "w": 6,
         "x": 0,
         "y": 0
       },
@@ -135,6 +134,7 @@
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -147,7 +147,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.0.3",
+      "pluginVersion": "11.1.0",
       "targets": [
         {
           "datasource": {
@@ -247,15 +247,16 @@
       "gridPos": {
         "h": 7,
         "w": 6,
-        "x": 12,
+        "x": 6,
         "y": 0
       },
-      "id": 4,
+      "id": 13,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -268,7 +269,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.0.3",
+      "pluginVersion": "11.1.0",
       "targets": [
         {
           "datasource": {
@@ -277,7 +278,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "sum(mattermost_notifications_total{type=\"push\", platform=\"android\"}) OR vector(0)",
+          "expr": "sum(mattermost_notifications_total{type=\"push\"}) OR vector(0)",
           "fullMetaSearch": false,
           "hide": true,
           "includeNullMetadata": true,
@@ -293,7 +294,129 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "sum(mattermost_notifications_total_ack{type=\"push\", platform=\"android\"}) OR vector(0)",
+          "expr": "sum(mattermost_notifications_total_ack{type=\"push\"}) OR vector(0)",
+          "fullMetaSearch": false,
+          "hide": true,
+          "includeNullMetadata": true,
+          "instant": false,
+          "range": true,
+          "refId": "Acked",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "__expr__",
+            "uid": "${DS_EXPRESSION}"
+          },
+          "expression": "$Acked/$Sent",
+          "hide": false,
+          "refId": "Notification Health",
+          "type": "math"
+        }
+      ],
+      "title": "Total Push Notification Health",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "A running total of the number of push notifications acknowledged by the server vs. the number sent.\n\nThe smaller number indicates the percent change over the selected date range, while the larger number is the absolute total.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "NaN": {
+                  "index": 0,
+                  "text": "No notifications sent"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "max": 1,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 0.8
+              },
+              {
+                "color": "yellow",
+                "value": 0.9
+              },
+              {
+                "color": "green",
+                "value": 0.95
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 12,
+        "y": 0
+      },
+      "id": 4,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": true,
+        "text": {},
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "sum(mattermost_notifications_total{type=\"push\" platform=\"android\"}) OR vector(0)",
+          "fullMetaSearch": false,
+          "hide": true,
+          "includeNullMetadata": true,
+          "instant": false,
+          "range": true,
+          "refId": "Sent",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "sum(mattermost_notifications_total_ack{type=\"push\" platform=\"android\"}) OR vector(0)",
           "fullMetaSearch": false,
           "hide": true,
           "includeNullMetadata": true,
@@ -377,6 +500,7 @@
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -389,7 +513,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.0.3",
+      "pluginVersion": "11.1.0",
       "targets": [
         {
           "datasource": {
@@ -398,7 +522,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "sum(mattermost_notifications_total{type=\"push\", platform=\"ios\"}) OR vector(0)",
+          "expr": "sum(mattermost_notifications_total{type=\"push\" platform=\"ios\"}) OR vector(0)",
           "fullMetaSearch": false,
           "hide": true,
           "includeNullMetadata": true,
@@ -414,7 +538,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "sum(mattermost_notifications_total_ack{type=\"push\", platform=\"ios\"}) OR vector(0)",
+          "expr": "sum(mattermost_notifications_total_ack{type=\"push\" platform=\"ios\"}) OR vector(0)",
           "fullMetaSearch": false,
           "hide": true,
           "includeNullMetadata": true,
@@ -450,6 +574,7 @@
             "mode": "fixed"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -463,6 +588,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -702,6 +828,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "diff"
@@ -713,7 +840,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.0.3",
+      "pluginVersion": "11.1.0",
       "targets": [
         {
           "datasource": {
@@ -782,6 +909,7 @@
             "mode": "fixed"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -795,6 +923,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -987,7 +1116,7 @@
         "sizing": "auto",
         "valueMode": "color"
       },
-      "pluginVersion": "10.0.3",
+      "pluginVersion": "11.1.0",
       "targets": [
         {
           "datasource": {
@@ -1030,7 +1159,42 @@
           },
           "mappings": []
         },
-        "overrides": []
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "desktop_notification_hook",
+                  "not_following_thread",
+                  "notifications_permission_denied",
+                  "notifications_permission_previously_denied",
+                  "os_dnd",
+                  "system_message",
+                  "thread_is_open",
+                  "too_many_posts",
+                  "user_status",
+                  "channel_is_open",
+                  "channel_muted"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 14,
@@ -1137,7 +1301,7 @@
         "sizing": "auto",
         "valueMode": "color"
       },
-      "pluginVersion": "10.0.3",
+      "pluginVersion": "11.1.0",
       "targets": [
         {
           "datasource": {
@@ -1175,7 +1339,37 @@
           },
           "mappings": []
         },
-        "overrides": []
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "channel_muted",
+                  "not_mentioned",
+                  "notify_level_none",
+                  "session_expired",
+                  "system_message",
+                  "user_status"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 14,
@@ -1317,7 +1511,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.0.3",
+      "pluginVersion": "11.0.0",
       "targets": [
         {
           "datasource": {
@@ -1358,8 +1552,7 @@
     }
   ],
   "refresh": "5s",
-  "schemaVersion": 38,
-  "style": "dark",
+  "schemaVersion": 39,
   "tags": [],
   "templating": {
     "list": []
@@ -1371,7 +1564,7 @@
   "timepicker": {},
   "timezone": "",
   "title": "Mattermost Notification Health",
-  "uid": "ab852b98-e754-4e9f-9791-6296e9fd127c",
-  "version": 4,
+  "uid": "b03eca8a-6ee3-443e-b16c-7b03f2eb64e8",
+  "version": 16,
   "weekStart": ""
 }
