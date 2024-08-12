@@ -1,7 +1,7 @@
 {
   "__inputs": [
     {
-      "name": "DS_PROMETHEUS_PROD",
+      "name": "DS_PROMETHEUS",
       "label": "Prometheus Prod",
       "description": "",
       "type": "datasource",
@@ -81,7 +81,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS_PROD}"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Load times between the moment the app is initialized and the moment the target screen (Home, Channel or Thread) is shown in the screen.\n\nEach point in the graph shows the percentile of the  events during the last hour.",
       "fieldConfig": {
@@ -199,11 +199,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "histogram_quantile($percentile, sum by(le) (rate(mattermost_mobileapp_mobile_load_bucket{namespace=~\"$namespace\"}[$rate])))",
+          "expr": "histogram_quantile($percentile, sum by(le) (rate(mattermost_mobileapp_mobile_load_bucket{}[$rate])))",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": false,
@@ -216,11 +216,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "histogram_quantile($percentile, sum by(le) (rate(mattermost_mobileapp_mobile_load_bucket{platform=\"android\", namespace=~\"$namespace\"}[$rate])))",
+          "expr": "histogram_quantile($percentile, sum by(le) (rate(mattermost_mobileapp_mobile_load_bucket{platform=\"android\"}[$rate])))",
           "fullMetaSearch": false,
           "includeNullMetadata": false,
           "instant": false,
@@ -232,11 +232,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "histogram_quantile($percentile, sum by(le) (rate(mattermost_mobileapp_mobile_load_bucket{platform=\"ios\", namespace=~\"$namespace\"}[$rate])))",
+          "expr": "histogram_quantile($percentile, sum by(le) (rate(mattermost_mobileapp_mobile_load_bucket{platform=\"ios\"}[$rate])))",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": false,
@@ -253,7 +253,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS_PROD}"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Load times between the moment the app is initialized and the moment the target screen (Home, Channel or Thread) is shown in the screen.\n\nThese values represent the percentile of all events since the last metrics restart.",
       "fieldConfig": {
@@ -348,11 +348,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "histogram_quantile($percentile, sum by(le) (mattermost_mobileapp_mobile_load_bucket{namespace=~\"$namespace\"}))",
+          "expr": "histogram_quantile($percentile, sum by(le) (mattermost_mobileapp_mobile_load_bucket{}))",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": false,
@@ -365,11 +365,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "histogram_quantile($percentile, sum by(le) (mattermost_mobileapp_mobile_load_bucket{platform=\"android\", namespace=~\"$namespace\"}))",
+          "expr": "histogram_quantile($percentile, sum by(le) (mattermost_mobileapp_mobile_load_bucket{platform=\"android\"}))",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": false,
@@ -382,11 +382,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "histogram_quantile($percentile, sum by(le) (mattermost_mobileapp_mobile_load_bucket{platform=\"ios\", namespace=~\"$namespace\"}))",
+          "expr": "histogram_quantile($percentile, sum by(le) (mattermost_mobileapp_mobile_load_bucket{platform=\"ios\"}))",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": false,
@@ -403,7 +403,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS_PROD}"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Load times between the moment the app is initialized and the moment the target screen (Home, Channel or Thread) is shown in the screen.\n\nThis graph represents all events generated since the last metrics restart.",
       "fieldConfig": {
@@ -521,11 +521,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "sum(mattermost_mobileapp_mobile_load_count{namespace=~\"$namespace\"})",
+          "expr": "sum(mattermost_mobileapp_mobile_load_count{})",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": false,
@@ -538,11 +538,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "sum(mattermost_mobileapp_mobile_load_count{platform=\"android\", namespace=~\"$namespace\"})",
+          "expr": "sum(mattermost_mobileapp_mobile_load_count{platform=\"android\"})",
           "fullMetaSearch": false,
           "includeNullMetadata": false,
           "instant": false,
@@ -554,11 +554,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "sum(mattermost_mobileapp_mobile_load_count{platform=\"ios\", namespace=~\"$namespace\"})",
+          "expr": "sum(mattermost_mobileapp_mobile_load_count{platform=\"ios\"})",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": false,
@@ -575,7 +575,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS_PROD}"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Load times between the moment the app is initialized and the moment the target screen (Home, Channel or Thread) is shown in the screen.\n\nThese numbers represent the number of events since the last metrics restart.",
       "fieldConfig": {
@@ -662,11 +662,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "sum(mattermost_mobileapp_mobile_load_count{namespace=~\"$namespace\"})",
+          "expr": "sum(mattermost_mobileapp_mobile_load_count{})",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -678,11 +678,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "sum(mattermost_mobileapp_mobile_load_count{namespace=~\"$namespace\", platform=\"android\"})",
+          "expr": "sum(mattermost_mobileapp_mobile_load_count{platform=\"android\"})",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -695,11 +695,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "sum(mattermost_mobileapp_mobile_load_count{namespace=~\"$namespace\", platform=\"ios\"})",
+          "expr": "sum(mattermost_mobileapp_mobile_load_count{platform=\"ios\"})",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -729,7 +729,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS_PROD}"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Channel switch represents the time between the user clicks on a channel name, and the app shows the latest post in that channel.\n\nEach point in the graph shows the percentile of the  events during the last hour.",
       "fieldConfig": {
@@ -847,11 +847,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "histogram_quantile($percentile, sum by(le) (rate(mattermost_mobileapp_mobile_channel_switch_bucket{namespace=~\"$namespace\"}[$rate])))",
+          "expr": "histogram_quantile($percentile, sum by(le) (rate(mattermost_mobileapp_mobile_channel_switch_bucket{}[$rate])))",
           "fullMetaSearch": false,
           "includeNullMetadata": false,
           "instant": false,
@@ -863,11 +863,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "histogram_quantile($percentile, sum by(le) (rate(mattermost_mobileapp_mobile_channel_switch_bucket{platform=\"android\", namespace=~\"$namespace\"}[$rate])))",
+          "expr": "histogram_quantile($percentile, sum by(le) (rate(mattermost_mobileapp_mobile_channel_switch_bucket{platform=\"android\"}[$rate])))",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": false,
@@ -880,11 +880,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "histogram_quantile($percentile, sum by(le) (rate(mattermost_mobileapp_mobile_channel_switch_bucket{platform=\"ios\", namespace=~\"$namespace\"}[$rate])))",
+          "expr": "histogram_quantile($percentile, sum by(le) (rate(mattermost_mobileapp_mobile_channel_switch_bucket{platform=\"ios\"}[$rate])))",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": false,
@@ -901,7 +901,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS_PROD}"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Channel switch represents the time between the user clicks on a channel name, and the app shows the latest post in that channel.\n\nThese values represent the percentile of all events since the last metrics restart.",
       "fieldConfig": {
@@ -996,11 +996,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "histogram_quantile($percentile, sum by(le) (mattermost_mobileapp_mobile_channel_switch_bucket{namespace=~\"$namespace\"}))",
+          "expr": "histogram_quantile($percentile, sum by(le) (mattermost_mobileapp_mobile_channel_switch_bucket{}))",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": false,
@@ -1013,11 +1013,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "histogram_quantile($percentile, sum by(le) (mattermost_mobileapp_mobile_channel_switch_bucket{platform=\"android\", namespace=~\"$namespace\"}))",
+          "expr": "histogram_quantile($percentile, sum by(le) (mattermost_mobileapp_mobile_channel_switch_bucket{platform=\"android\"}))",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": false,
@@ -1030,11 +1030,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "histogram_quantile($percentile, sum by(le) (mattermost_mobileapp_mobile_channel_switch_bucket{platform=\"ios\", namespace=~\"$namespace\"}))",
+          "expr": "histogram_quantile($percentile, sum by(le) (mattermost_mobileapp_mobile_channel_switch_bucket{platform=\"ios\"}))",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": false,
@@ -1051,7 +1051,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS_PROD}"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Channel switch represents the time between the user clicks on a channel name, and the app shows the latest post in that channel.\n\nThis graph represents all events generated since the last metrics restart.",
       "fieldConfig": {
@@ -1168,11 +1168,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "sum(mattermost_mobileapp_mobile_channel_switch_count{namespace=~\"$namespace\"})",
+          "expr": "sum(mattermost_mobileapp_mobile_channel_switch_count{})",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": false,
@@ -1185,11 +1185,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "sum(mattermost_mobileapp_mobile_channel_switch_count{platform=\"android\", namespace=~\"$namespace\"})",
+          "expr": "sum(mattermost_mobileapp_mobile_channel_switch_count{platform=\"android\"})",
           "fullMetaSearch": false,
           "includeNullMetadata": false,
           "instant": false,
@@ -1201,11 +1201,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "sum(mattermost_mobileapp_mobile_channel_switch_count{platform=\"ios\", namespace=~\"$namespace\"})",
+          "expr": "sum(mattermost_mobileapp_mobile_channel_switch_count{platform=\"ios\"})",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": false,
@@ -1222,7 +1222,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS_PROD}"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Channel switch represents the time between the user clicks on a channel name, and the app shows the latest post in that channel.\n\nThese numbers represent the number of events since the last metrics restart.",
       "fieldConfig": {
@@ -1308,11 +1308,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "sum(mattermost_mobileapp_mobile_channel_switch_count{namespace=~\"$namespace\"})",
+          "expr": "sum(mattermost_mobileapp_mobile_channel_switch_count{})",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -1324,11 +1324,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "sum(mattermost_mobileapp_mobile_channel_switch_count{namespace=~\"$namespace\", platform=\"android\"})",
+          "expr": "sum(mattermost_mobileapp_mobile_channel_switch_count{platform=\"android\"})",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -1341,11 +1341,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "sum(mattermost_mobileapp_mobile_channel_switch_count{namespace=~\"$namespace\", platform=\"ios\"})",
+          "expr": "sum(mattermost_mobileapp_mobile_channel_switch_count{platform=\"ios\"})",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -1375,7 +1375,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS_PROD}"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Team switch represents the time between the user taps on a team, and the full category screen changes to the one of the new team.\n\nEach point in the graph shows the percentile of the  events during the last hour.",
       "fieldConfig": {
@@ -1492,11 +1492,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "histogram_quantile($percentile, sum by(le) (rate(mattermost_mobileapp_mobile_team_switch_bucket{namespace=~\"$namespace\"}[$rate])))",
+          "expr": "histogram_quantile($percentile, sum by(le) (rate(mattermost_mobileapp_mobile_team_switch_bucket{}[$rate])))",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": false,
@@ -1509,11 +1509,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "histogram_quantile($percentile, sum by(le) (rate(mattermost_mobileapp_mobile_team_switch_bucket{platform=\"android\", namespace=~\"$namespace\"}[$rate])))",
+          "expr": "histogram_quantile($percentile, sum by(le) (rate(mattermost_mobileapp_mobile_team_switch_bucket{platform=\"android\"}[$rate])))",
           "fullMetaSearch": false,
           "includeNullMetadata": false,
           "instant": false,
@@ -1525,11 +1525,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "histogram_quantile($percentile, sum by(le) (rate(mattermost_mobileapp_mobile_team_switch_bucket{platform=\"ios\", namespace=~\"$namespace\"}[$rate])))",
+          "expr": "histogram_quantile($percentile, sum by(le) (rate(mattermost_mobileapp_mobile_team_switch_bucket{platform=\"ios\"}[$rate])))",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": false,
@@ -1546,7 +1546,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS_PROD}"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Team switch represents the time between the user taps on a team, and the full category screen changes to the one of the new team.\n\nThese values represent the percentile of all events since the last metrics restart.",
       "fieldConfig": {
@@ -1640,11 +1640,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "histogram_quantile($percentile, sum by(le) (mattermost_mobileapp_mobile_team_switch_bucket{namespace=~\"$namespace\"}))",
+          "expr": "histogram_quantile($percentile, sum by(le) (mattermost_mobileapp_mobile_team_switch_bucket{}))",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": false,
@@ -1657,11 +1657,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "histogram_quantile($percentile, sum by(le) (mattermost_mobileapp_mobile_team_switch_bucket{platform=\"android\", namespace=~\"$namespace\"}))",
+          "expr": "histogram_quantile($percentile, sum by(le) (mattermost_mobileapp_mobile_team_switch_bucket{platform=\"android\"}))",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": false,
@@ -1674,11 +1674,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "histogram_quantile($percentile, sum by(le) (mattermost_mobileapp_mobile_team_switch_bucket{platform=\"ios\", namespace=~\"$namespace\"}))",
+          "expr": "histogram_quantile($percentile, sum by(le) (mattermost_mobileapp_mobile_team_switch_bucket{platform=\"ios\"}))",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": false,
@@ -1695,7 +1695,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS_PROD}"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Team switch represents the time between the user taps on a team, and the full category screen changes to the one of the new team.\n\nThis graph represents all events generated since the last metrics restart.",
       "fieldConfig": {
@@ -1812,11 +1812,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "sum(mattermost_mobileapp_mobile_team_switch_count{namespace=~\"$namespace\"})",
+          "expr": "sum(mattermost_mobileapp_mobile_team_switch_count{})",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": false,
@@ -1829,11 +1829,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "sum(mattermost_mobileapp_mobile_team_switch_count{platform=\"android\", namespace=~\"$namespace\"})",
+          "expr": "sum(mattermost_mobileapp_mobile_team_switch_count{platform=\"android\"})",
           "fullMetaSearch": false,
           "includeNullMetadata": false,
           "instant": false,
@@ -1845,11 +1845,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "sum(mattermost_mobileapp_mobile_team_switch_count{platform=\"ios\", namespace=~\"$namespace\"})",
+          "expr": "sum(mattermost_mobileapp_mobile_team_switch_count{platform=\"ios\"})",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": false,
@@ -1866,7 +1866,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS_PROD}"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Team switch represents the time between the user taps on a team, and the full category screen changes to the one of the new team.\n\nThese numbers represent the number of events since the last metrics restart.",
       "fieldConfig": {
@@ -1952,11 +1952,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "sum(mattermost_mobileapp_mobile_team_switch_count{namespace=~\"$namespace\"})",
+          "expr": "sum(mattermost_mobileapp_mobile_team_switch_count{})",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -1968,11 +1968,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "sum(mattermost_mobileapp_mobile_team_switch_count{namespace=~\"$namespace\", platform=\"android\"})",
+          "expr": "sum(mattermost_mobileapp_mobile_team_switch_count{platform=\"android\"})",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -1985,11 +1985,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS_PROD}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "sum(mattermost_mobileapp_mobile_team_switch_count{namespace=~\"$namespace\", platform=\"ios\"})",
+          "expr": "sum(mattermost_mobileapp_mobile_team_switch_count{platform=\"ios\"})",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -2065,29 +2065,6 @@
         "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
-      },
-      {
-        "current": {},
-        "datasource": {
-          "type": "prometheus",
-          "uid": "${DS_PROMETHEUS_PROD}"
-        },
-        "definition": "label_values(mattermost_mobileapp_mobile_load_count,namespace)",
-        "hide": 0,
-        "includeAll": true,
-        "multi": true,
-        "name": "namespace",
-        "options": [],
-        "query": {
-          "qryType": 1,
-          "query": "label_values(mattermost_mobileapp_mobile_load_count,namespace)",
-          "refId": "PrometheusVariableQueryEditor-VariableQuery"
-        },
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "type": "query"
       }
     ]
   },
