@@ -124,7 +124,7 @@
       },
       "gridPos": {
         "h": 7,
-        "w": 6,
+        "w": 12,
         "x": 0,
         "y": 0
       },
@@ -247,7 +247,7 @@
       "gridPos": {
         "h": 7,
         "w": 6,
-        "x": 6,
+        "x": 12,
         "y": 0
       },
       "id": 13,
@@ -278,7 +278,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "sum(mattermost_notifications_total{type=\"push\"}) OR vector(0)",
+          "expr": "sum(mattermost_notifications_total{type=\"push\", platform=~\"$platform\"}) OR vector(0)",
           "fullMetaSearch": false,
           "hide": true,
           "includeNullMetadata": true,
@@ -294,7 +294,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "sum(mattermost_notifications_total_ack{type=\"push\"}) OR vector(0)",
+          "expr": "sum(mattermost_notifications_total_ack{type=\"push\", platform=~\"$platform\"}) OR vector(0)",
           "fullMetaSearch": false,
           "hide": true,
           "includeNullMetadata": true,
@@ -322,23 +322,14 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
-      "description": "A running total of the number of push notifications acknowledged by the server vs. the number sent.\n\nThe smaller number indicates the percent change over the selected date range, while the larger number is the absolute total.",
+      "description": "Shows the percentage of notifications sent to the push proxy that were properly handled by it.",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "thresholds"
           },
-          "mappings": [
-            {
-              "options": {
-                "NaN": {
-                  "index": 0,
-                  "text": "No notifications sent"
-                }
-              },
-              "type": "value"
-            }
-          ],
+          "decimals": 2,
+          "mappings": [],
           "max": 1,
           "min": 0,
           "thresholds": {
@@ -347,136 +338,6 @@
               {
                 "color": "red",
                 "value": null
-              },
-              {
-                "color": "orange",
-                "value": 0.8
-              },
-              {
-                "color": "yellow",
-                "value": 0.9
-              },
-              {
-                "color": "green",
-                "value": 0.95
-              }
-            ]
-          },
-          "unit": "percentunit"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 6,
-        "x": 12,
-        "y": 0
-      },
-      "id": 4,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": true,
-        "text": {},
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "11.1.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "sum(mattermost_notifications_total{type=\"push\", platform=\"android\"}) OR vector(0)",
-          "fullMetaSearch": false,
-          "hide": true,
-          "includeNullMetadata": true,
-          "instant": false,
-          "range": true,
-          "refId": "Sent",
-          "useBackend": false
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "sum(mattermost_notifications_total_ack{type=\"push\", platform=\"android\"}) OR vector(0)",
-          "fullMetaSearch": false,
-          "hide": true,
-          "includeNullMetadata": true,
-          "instant": false,
-          "range": true,
-          "refId": "Acked",
-          "useBackend": false
-        },
-        {
-          "datasource": {
-            "type": "__expr__",
-            "uid": "${DS_EXPRESSION}"
-          },
-          "expression": "$Acked/$Sent",
-          "hide": false,
-          "refId": "Notification Health",
-          "type": "math"
-        }
-      ],
-      "title": "Android Push Notification Health",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "description": "A running total of the number of push notifications acknowledged by the server vs. the number sent.\n\nThe smaller number indicates the percent change over the selected date range, while the larger number is the absolute total.",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [
-            {
-              "options": {
-                "NaN": {
-                  "index": 0,
-                  "text": "No notifications sent"
-                }
-              },
-              "type": "value"
-            }
-          ],
-          "max": 1,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "red",
-                "value": null
-              },
-              {
-                "color": "orange",
-                "value": 0.8
-              },
-              {
-                "color": "yellow",
-                "value": 0.9
               },
               {
                 "color": "green",
@@ -494,7 +355,7 @@
         "x": 18,
         "y": 0
       },
-      "id": 12,
+      "id": 14,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -509,7 +370,6 @@
           "values": false
         },
         "showPercentChange": true,
-        "text": {},
         "textMode": "auto",
         "wideLayout": true
       },
@@ -522,13 +382,14 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "sum(mattermost_notifications_total{type=\"push\", platform=\"ios\"}) OR vector(0)",
+          "expr": "sum(mattermost_notifications_total{type=\"push\", platform=~\"$platform\"})",
           "fullMetaSearch": false,
           "hide": true,
           "includeNullMetadata": true,
           "instant": false,
+          "legendFormat": "__auto",
           "range": true,
-          "refId": "Sent",
+          "refId": "Success",
           "useBackend": false
         },
         {
@@ -538,13 +399,14 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "sum(mattermost_notifications_total_ack{type=\"push\", platform=\"ios\"}) OR vector(0)",
+          "expr": "sum(mattermost_notifications_error{type=\"push\", reason=\"push_proxy_send_error\", platform=~\"$platform\"})",
           "fullMetaSearch": false,
           "hide": true,
           "includeNullMetadata": true,
           "instant": false,
+          "legendFormat": "__auto",
           "range": true,
-          "refId": "Acked",
+          "refId": "Fail",
           "useBackend": false
         },
         {
@@ -552,13 +414,13 @@
             "type": "__expr__",
             "uid": "${DS_EXPRESSION}"
           },
-          "expression": "$Acked/$Sent",
+          "expression": "($Success/($Success+$Fail))",
           "hide": false,
-          "refId": "Notification Health",
+          "refId": "Rate",
           "type": "math"
         }
       ],
-      "title": "iOS Push Notification Health",
+      "title": "Push Proxy Delivery Rate",
       "type": "stat"
     },
     {
@@ -1026,26 +888,34 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "editorMode": "code",
-          "expr": "sum(mattermost_notifications_total{type=\"push\"}) OR vector(0)",
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "sum(mattermost_notifications_total{type=\"push\", platform!=\"$platform\"}) OR vector(0)",
+          "fullMetaSearch": false,
           "hide": false,
+          "includeNullMetadata": true,
           "instant": false,
           "legendFormat": "Push Notifications Sent",
           "range": true,
-          "refId": "Sent"
+          "refId": "Sent",
+          "useBackend": false
         },
         {
           "datasource": {
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "editorMode": "code",
-          "expr": "sum(mattermost_notifications_total_ack{type=\"push\"}) OR vector(0)",
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "sum(mattermost_notifications_total_ack{type=\"push\", platform!=\"$platform\"}) OR vector(0)",
+          "fullMetaSearch": false,
           "hide": false,
+          "includeNullMetadata": true,
           "instant": false,
           "legendFormat": "Push Notifications Acknowledged",
           "range": true,
-          "refId": "Acked"
+          "refId": "Acked",
+          "useBackend": false
         },
         {
           "datasource": {
@@ -1273,12 +1143,16 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "editorMode": "code",
-          "expr": "sum by(reason) (mattermost_notifications_error{type=\"push\"})",
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "sum by(reason) (mattermost_notifications_error{type=\"push\", platform=~\"$platform|no_platform\"})",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
           "instant": false,
           "legendFormat": "{{reason}}",
           "range": true,
-          "refId": "A"
+          "refId": "A",
+          "useBackend": false
         }
       ],
       "title": "Push Notification Errors by Reason",
@@ -1385,7 +1259,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           }
@@ -1435,6 +1310,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "diff"
@@ -1446,7 +1322,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.1.0",
       "targets": [
         {
           "datasource": {
@@ -1490,7 +1366,42 @@
   "schemaVersion": 39,
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": "$__all"
+        },
+        "description": "The platform for push proxy related metrics",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Platform",
+        "multi": false,
+        "name": "platform",
+        "options": [
+          {
+            "selected": false,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": true,
+            "text": "ios",
+            "value": "ios"
+          },
+          {
+            "selected": false,
+            "text": "android",
+            "value": "android"
+          }
+        ],
+        "query": "ios, android",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      }
+    ]
   },
   "time": {
     "from": "now-24h",
@@ -1500,6 +1411,6 @@
   "timezone": "",
   "title": "Mattermost Notification Health",
   "uid": "ab852b98-e754-4e9f-9791-6296e9fd127c",
-  "version": 5,
+  "version": 6,
   "weekStart": ""
 }
