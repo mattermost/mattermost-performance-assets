@@ -15,7 +15,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "11.0.0"
+      "version": "11.1.0"
     },
     {
       "type": "datasource",
@@ -54,7 +54,7 @@
   },
   "editable": true,
   "fiscalYearStartMonth": 0,
-  "graphTooltip": 0,
+  "graphTooltip": 1,
   "id": null,
   "links": [],
   "liveNow": false,
@@ -160,17 +160,15 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "histogram_quantile(0.75, sum by(le) (increase(mattermost_webapp_channel_switch_bucket[30m])))",
+          "exemplar": false,
+          "expr": "histogram_quantile($percentile / 100, sum by(le) (increase(mattermost_webapp_channel_switch_bucket{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[$decay])))",
           "format": "time_series",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
+          "hide": false,
           "instant": false,
-          "legendFormat": "75th Percentile",
+          "legendFormat": "[[percentile]]th Percentile",
           "range": true,
-          "refId": "A",
-          "useBackend": false
+          "refId": "A"
         }
       ],
       "title": "Channel Switch",
@@ -181,7 +179,7 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
-      "description": "The 75th percentile of all Channel Switch measurements over the last 24 hours and the number of those measurements recorded over the same time period.\n\nTarget values:\n- Good: 250ms\n- Needs Improvement: 500ms",
+      "description": "The [[percentile]]th percentile of all Channel Switch measurements over the selected time period and the number of measurements taken during that time.\n\nTarget values for P75:\n- Good: 250ms\n- Needs Improvement: 500ms",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -241,6 +239,7 @@
         "graphMode": "none",
         "justifyMode": "center",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -252,7 +251,7 @@
         "textMode": "value_and_name",
         "wideLayout": false
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.1.0",
       "targets": [
         {
           "datasource": {
@@ -262,12 +261,12 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "histogram_quantile(0.75, sum by(le) (increase(mattermost_webapp_channel_switch_bucket[24h])))",
+          "expr": "histogram_quantile($percentile / 100, sum by(le) (increase(mattermost_webapp_channel_switch_bucket{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[$__range])))",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "75th Percentile",
+          "legendFormat": "[[percentile]]th Percentile",
           "range": true,
           "refId": "A",
           "useBackend": false
@@ -280,7 +279,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(increase(mattermost_webapp_channel_switch_count[24h]))",
+          "expr": "sum(increase(mattermost_webapp_channel_switch_count{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[$__range]))",
           "format": "time_series",
           "fullMetaSearch": false,
           "hide": false,
@@ -292,7 +291,7 @@
           "useBackend": false
         }
       ],
-      "title": "Channel Switch (24h)",
+      "title": "Channel Switch (Overall)",
       "type": "stat"
     },
     {
@@ -384,11 +383,11 @@
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "histogram_quantile(0.75, sum by(le) (increase(mattermost_webapp_team_switch_bucket[30m])))",
+          "expr": "histogram_quantile($percentile / 100, sum by(le) (increase(mattermost_webapp_team_switch_bucket{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[$decay])))",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "75th Percentile",
+          "legendFormat": "[[percentile]]th Percentile",
           "range": true,
           "refId": "A",
           "useBackend": false
@@ -402,7 +401,7 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
-      "description": "The 75th percentile of all Team Switch measurements over the last 24 hours and the number of those measurements recorded over the same time period.\n\nTarget values:\n- Good: 750ms\n- Needs Improvement: 1.25s",
+      "description": "The [[percentile]]th percentile of all Team Switch measurements over the selected time period and the number of measurements taken during that time.\n\nTarget values for P75:\n- Good: 750ms\n- Needs Improvement: 1.25s",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -462,6 +461,7 @@
         "graphMode": "none",
         "justifyMode": "center",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -473,7 +473,7 @@
         "textMode": "value_and_name",
         "wideLayout": false
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.1.0",
       "targets": [
         {
           "datasource": {
@@ -483,12 +483,12 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "histogram_quantile(0.75, sum by(le) (increase(mattermost_webapp_team_switch_bucket[24h])))",
+          "expr": "histogram_quantile($percentile / 100, sum by(le) (increase(mattermost_webapp_team_switch_bucket{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[$__range])))",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "75th Percentile",
+          "legendFormat": "[[percentile]]th Percentile",
           "range": true,
           "refId": "A",
           "useBackend": false
@@ -501,7 +501,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(increase(mattermost_webapp_team_switch_count[24h]))",
+          "expr": "sum(increase(mattermost_webapp_team_switch_count{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[$__range]))",
           "format": "time_series",
           "fullMetaSearch": false,
           "hide": false,
@@ -513,7 +513,7 @@
           "useBackend": false
         }
       ],
-      "title": "Team Switch (24h)",
+      "title": "Team Switch (Overall)",
       "type": "stat"
     },
     {
@@ -605,7 +605,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "sum(increase(mattermost_webapp_channel_switch_count[30m]))",
+          "expr": "sum(increase(mattermost_webapp_channel_switch_count{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[$decay]))",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": false,
@@ -708,7 +708,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "sum(increase(mattermost_webapp_team_switch_count[30m]))",
+          "expr": "sum(increase(mattermost_webapp_team_switch_count{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[$decay]))",
           "format": "time_series",
           "fullMetaSearch": false,
           "hide": false,
@@ -814,12 +814,12 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "histogram_quantile(0.75, sum by(le) (increase(mattermost_webapp_rhs_load_bucket[30m])))",
+          "expr": "histogram_quantile($percentile / 100, sum by(le) (increase(mattermost_webapp_rhs_load_bucket{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[$decay])))",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "75th Percentile",
+          "legendFormat": "[[percentile]]th Percentile",
           "range": true,
           "refId": "A",
           "useBackend": false
@@ -833,7 +833,7 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
-      "description": "The 75th percentile of all RHS Load measurements over the last 24 hours and the number of those measurements recorded over the same time period.\n\nTarget values:\n- Good: 350ms\n- Needs Improvement: 600ms",
+      "description": "The [[percentile]]th percentile of all RHS Load measurements over the selected time period and the number of measurements taken during that time.\n\nTarget values for P75:\n- Good: 350ms\n- Needs Improvement: 600ms",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -892,6 +892,7 @@
         "graphMode": "none",
         "justifyMode": "center",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -903,7 +904,7 @@
         "textMode": "value_and_name",
         "wideLayout": false
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.1.0",
       "targets": [
         {
           "datasource": {
@@ -913,12 +914,12 @@
           "disableTextWrap": false,
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "histogram_quantile(0.75, sum by(le) (increase(mattermost_webapp_rhs_load_bucket[24h])))",
+          "expr": "histogram_quantile($percentile / 100, sum by(le) (increase(mattermost_webapp_rhs_load_bucket{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[$__range])))",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "75th Percentile",
+          "legendFormat": "[[percentile]]th Percentile",
           "range": true,
           "refId": "A",
           "useBackend": false
@@ -929,7 +930,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "sum(increase(mattermost_webapp_rhs_load_count[24h]))",
+          "expr": "sum(increase(mattermost_webapp_rhs_load_count{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[$__range]))",
           "hide": false,
           "instant": false,
           "legendFormat": "Count",
@@ -937,7 +938,7 @@
           "refId": "B"
         }
       ],
-      "title": "RHS Load (24h)",
+      "title": "RHS Load (Overall)",
       "type": "stat"
     },
     {
@@ -1030,12 +1031,12 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "histogram_quantile(0.75, sum by(le) (increase(mattermost_webapp_global_threads_load_bucket[30m])))",
+          "expr": "histogram_quantile($percentile / 100, sum by(le) (increase(mattermost_webapp_global_threads_load_bucket{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[$decay])))",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "75th Percentile",
+          "legendFormat": "[[percentile]]th Percentile",
           "range": true,
           "refId": "A",
           "useBackend": false
@@ -1049,7 +1050,7 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
-      "description": "The 75th percentile of all Threads List Load measurements over the last 24 hours and the number of those measurements recorded over the same time period.\n\nTarget values:\n- Good: 750ms\n- Needs Improvement: 800ms",
+      "description": "The [[percentile]]th percentile of all Threads List Load measurements over the selected time period and the number of measurements taken during that time.\n\nTarget values for P75:\n- Good: 500ms\n- Needs Improvement: 800ms",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1108,6 +1109,7 @@
         "graphMode": "none",
         "justifyMode": "center",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -1119,7 +1121,7 @@
         "textMode": "value_and_name",
         "wideLayout": false
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.1.0",
       "targets": [
         {
           "datasource": {
@@ -1129,12 +1131,12 @@
           "disableTextWrap": false,
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "histogram_quantile(0.75, sum by(le) (increase(mattermost_webapp_global_threads_load_bucket[24h])))",
+          "expr": "histogram_quantile($percentile / 100, sum by(le) (increase(mattermost_webapp_global_threads_load_bucket{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[$__range])))",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "75th Percentile",
+          "legendFormat": "[[percentile]]th Percentile",
           "range": true,
           "refId": "A",
           "useBackend": false
@@ -1146,7 +1148,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "sum(increase(mattermost_webapp_global_threads_load_count[24h]))",
+          "expr": "sum(increase(mattermost_webapp_global_threads_load_count{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[$__range]))",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -1157,7 +1159,7 @@
           "useBackend": false
         }
       ],
-      "title": "Threads List Load (24h)",
+      "title": "Threads List Load (Overall)",
       "type": "stat"
     },
     {
@@ -1249,7 +1251,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "sum(increase(mattermost_webapp_rhs_load_count[30m]))",
+          "expr": "sum(increase(mattermost_webapp_rhs_load_count{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[$decay]))",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": false,
@@ -1352,7 +1354,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "sum(increase(mattermost_webapp_global_threads_load_count[30m]))",
+          "expr": "sum(increase(mattermost_webapp_global_threads_load_count{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[$decay]))",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": false,
@@ -1414,8 +1416,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1455,12 +1456,12 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "histogram_quantile(0.75, sum by(le) (increase(mattermost_webapp_interaction_to_next_paint_bucket[30m])))",
+          "expr": "histogram_quantile($percentile / 100, sum by(le) (increase(mattermost_webapp_interaction_to_next_paint_bucket{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[$decay])))",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": false,
           "instant": false,
-          "legendFormat": "75th Percentile",
+          "legendFormat": "[[percentile]]th Percentile",
           "range": true,
           "refId": "B",
           "useBackend": false
@@ -1474,7 +1475,7 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
-      "description": "The 75th percentile of all Interaction to Next Paint measurements over the last 24 hours and the number of those measurements recorded over the same time period.\n\nTarget values:\n- Good: 200ms\n- Needs Improvement: 500ms",
+      "description": "The [[percentile]]th percentile of all Interaction to Next Paint measurements over the selected time period and the number of measurements taken during that time.\n\nTarget values for P75:\n- Good: 200ms\n- Needs Improvement: 500ms",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1485,8 +1486,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "#EAB839",
@@ -1554,12 +1554,12 @@
           "disableTextWrap": false,
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "histogram_quantile(0.75, sum by(le) (increase(mattermost_webapp_interaction_to_next_paint_bucket[24h])))",
+          "expr": "histogram_quantile($percentile / 100, sum by(le) (increase(mattermost_webapp_interaction_to_next_paint_bucket{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[$__range])))",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "75th Percentile",
+          "legendFormat": "[[percentile]]th Percentile",
           "range": true,
           "refId": "A",
           "useBackend": false
@@ -1571,7 +1571,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "sum(increase(mattermost_webapp_interaction_to_next_paint_count[24h]))",
+          "expr": "sum(increase(mattermost_webapp_interaction_to_next_paint_count{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[$__range]))",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -1582,7 +1582,7 @@
           "useBackend": false
         }
       ],
-      "title": "INP (24h)",
+      "title": "INP (Overall)",
       "type": "stat"
     },
     {
@@ -1633,8 +1633,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1674,7 +1673,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "sum(rate(mattermost_webapp_long_tasks[10m]))",
+          "expr": "sum(rate(mattermost_webapp_long_tasks{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[10m]))",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": false,
@@ -1736,8 +1735,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1777,7 +1775,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "sum(increase(mattermost_webapp_interaction_to_next_paint_count[30m]))",
+          "expr": "sum(increase(mattermost_webapp_interaction_to_next_paint_count{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[$decay]))",
           "format": "time_series",
           "fullMetaSearch": false,
           "hide": false,
@@ -1854,8 +1852,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1895,12 +1892,12 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "histogram_quantile(0.75, sum by(le) (increase(mattermost_webapp_time_to_first_byte_bucket[30m])))",
+          "expr": "histogram_quantile($percentile / 100, sum by(le) (increase(mattermost_webapp_time_to_first_byte_bucket{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[$decay])))",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": false,
           "instant": false,
-          "legendFormat": "75th Percentile",
+          "legendFormat": "[[percentile]]th Percentile",
           "range": true,
           "refId": "B",
           "useBackend": false
@@ -1914,7 +1911,7 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
-      "description": "The 75th percentile of all Time To First Byte measurements over the last 24 hours and the number of those measurements recorded over the same time period.\n\nTarget values:\n- Good: 800ms\n- Needs Improvement: 1.8s",
+      "description": "The [[percentile]]th percentile of all Time To First Byte measurements over the selected time period and the number of measurements taken during that time.\n\nTarget values for P75:\n- Good: 800ms\n- Needs Improvement: 1.8s",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1925,8 +1922,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "#EAB839",
@@ -1994,12 +1990,12 @@
           "disableTextWrap": false,
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "histogram_quantile(0.75, sum by(le) (increase(mattermost_webapp_time_to_first_byte_bucket[24h])))",
+          "expr": "histogram_quantile($percentile / 100, sum by(le) (increase(mattermost_webapp_time_to_first_byte_bucket{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[$__range])))",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "75th Percentile",
+          "legendFormat": "[[percentile]]th Percentile",
           "range": true,
           "refId": "A",
           "useBackend": false
@@ -2011,7 +2007,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "sum(increase(mattermost_webapp_time_to_first_byte_count[24h]))",
+          "expr": "sum(increase(mattermost_webapp_time_to_first_byte_count{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[$__range]))",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -2022,7 +2018,7 @@
           "useBackend": false
         }
       ],
-      "title": "TTFB (24h)",
+      "title": "TTFB (Overall)",
       "type": "stat"
     },
     {
@@ -2073,8 +2069,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -2114,11 +2109,11 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "histogram_quantile(0.75, sum by(le) (increase(mattermost_webapp_page_load_bucket[30m])))",
+          "expr": "histogram_quantile($percentile / 100, sum by(le) (increase(mattermost_webapp_page_load_bucket{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[$decay])))",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "75th Percentile",
+          "legendFormat": "[[percentile]]th Percentile",
           "range": true,
           "refId": "A",
           "useBackend": false
@@ -2132,7 +2127,7 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
-      "description": "The 75th percentile of all Load Event End measurements over the last 24 hours and the number of those measurements recorded over the same time period.\n\nTarget values:\n- Good: 2.25s\n- Needs Improvement: 4.5s",
+      "description": "The [[percentile]]th percentile of all Load Event End measurements over the selected time period and the number of measurements taken during that time.\n\nTarget values for P75:\n- Good: 2.25s\n- Needs Improvement: 4.5s",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2143,8 +2138,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "#EAB839",
@@ -2212,12 +2206,12 @@
           "disableTextWrap": false,
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "histogram_quantile(0.75, sum by(le) (increase(mattermost_webapp_page_load_bucket[24h])))",
+          "expr": "histogram_quantile($percentile / 100, sum by(le) (increase(mattermost_webapp_page_load_bucket{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[$__range])))",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "75th Percentile",
+          "legendFormat": "[[percentile]]th Percentile",
           "range": true,
           "refId": "A",
           "useBackend": false
@@ -2229,7 +2223,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "sum(increase(mattermost_webapp_page_load_count[24h]))",
+          "expr": "sum(increase(mattermost_webapp_page_load_count{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[$__range]))",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -2240,7 +2234,7 @@
           "useBackend": false
         }
       ],
-      "title": "Load Event End (24h)",
+      "title": "Load Event End (Overall)",
       "type": "stat"
     },
     {
@@ -2291,8 +2285,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -2332,7 +2325,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "sum(increase(mattermost_webapp_time_to_first_byte_count[30m]))",
+          "expr": "sum(increase(mattermost_webapp_time_to_first_byte_count{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[$decay]))",
           "format": "time_series",
           "fullMetaSearch": false,
           "hide": false,
@@ -2396,8 +2389,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -2437,7 +2429,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "sum(increase(mattermost_webapp_page_load_count[30m]))",
+          "expr": "sum(increase(mattermost_webapp_page_load_count{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[$decay]))",
           "format": "time_series",
           "fullMetaSearch": false,
           "hide": false,
@@ -2501,8 +2493,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -2542,12 +2533,12 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "histogram_quantile(0.75, sum by(le) (increase(mattermost_webapp_first_contentful_paint_bucket[30m])))",
+          "expr": "histogram_quantile($percentile / 100, sum by(le) (increase(mattermost_webapp_first_contentful_paint_bucket{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[$decay])))",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": false,
           "instant": false,
-          "legendFormat": "FCP 75th Percentile",
+          "legendFormat": "FCP [[percentile]]th Percentile",
           "range": true,
           "refId": "B",
           "useBackend": false
@@ -2559,12 +2550,12 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "histogram_quantile(0.75, sum by(le) (increase(mattermost_webapp_largest_contentful_paint_bucket[30m])))",
+          "expr": "histogram_quantile($percentile / 100, sum by(le) (increase(mattermost_webapp_largest_contentful_paint_bucket{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[$decay])))",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": false,
           "instant": false,
-          "legendFormat": "LCP 75th Percentile",
+          "legendFormat": "LCP [[percentile]]th Percentile",
           "range": true,
           "refId": "C",
           "useBackend": false
@@ -2578,7 +2569,7 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
-      "description": "The 75th percentile of all First Contentful Paint measurements over the last 24 hours and the number of those measurements recorded over the same time period.\n\nTarget values:\n- Good: 1.8s\n- Needs Improvement: 3s",
+      "description": "The [[percentile]]th percentile of all First Contentful Paint measurements over the selected time period and the number of measurements taken during that time.\n\nTarget values for P75:\n- Good: 1.8s\n- Needs Improvement: 3s",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2589,8 +2580,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "#EAB839",
@@ -2658,12 +2648,12 @@
           "disableTextWrap": false,
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "histogram_quantile(0.75, sum by(le) (increase(mattermost_webapp_first_contentful_paint_bucket[24h])))",
+          "expr": "histogram_quantile($percentile / 100, sum by(le) (increase(mattermost_webapp_first_contentful_paint_bucket{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[$__range])))",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "75th Percentile",
+          "legendFormat": "[[percentile]]th Percentile",
           "range": true,
           "refId": "A",
           "useBackend": false
@@ -2675,7 +2665,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "sum(increase(mattermost_webapp_first_contentful_paint_count[24h]))",
+          "expr": "sum(increase(mattermost_webapp_first_contentful_paint_count{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[$__range]))",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -2686,7 +2676,7 @@
           "useBackend": false
         }
       ],
-      "title": "FCP (24h)",
+      "title": "FCP (Overall)",
       "type": "stat"
     },
     {
@@ -2737,8 +2727,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -2778,12 +2767,12 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "histogram_quantile(0.75, sum by(le) (increase(mattermost_webapp_cumulative_layout_shift_bucket[30m])))",
+          "expr": "histogram_quantile($percentile / 100, sum by(le) (increase(mattermost_webapp_cumulative_layout_shift_bucket{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[$decay])))",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": false,
           "instant": false,
-          "legendFormat": "75th Percentile",
+          "legendFormat": "[[percentile]]th Percentile",
           "range": true,
           "refId": "B",
           "useBackend": false
@@ -2797,7 +2786,7 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
-      "description": "The 75th percentile of all Cumulative Layout Shift measurements over the last 24 hours and the number of those measurements recorded over the same time period.\n\nTarget values:\n- Good: 0.1\n- Needs Improvement: 0.25",
+      "description": "The [[percentile]]th percentile of all Cumulative Layout Shift measurements over the selected time period and the number of measurements taken during that time.\n\nTarget values for P75:\n- Good: 0.1\n- Needs Improvement: 0.25",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2808,15 +2797,14 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "#EAB839",
                 "value": 0.1
               },
               {
-                "color": "#6ED0E0",
+                "color": "red",
                 "value": 0.25
               }
             ]
@@ -2877,12 +2865,12 @@
           "disableTextWrap": false,
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "histogram_quantile(0.75, sum by(le) (increase(mattermost_webapp_cumulative_layout_shift_bucket[24h])))",
+          "expr": "histogram_quantile($percentile / 100, sum by(le) (increase(mattermost_webapp_cumulative_layout_shift_bucket{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[$__range])))",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "75th Percentile",
+          "legendFormat": "[[percentile]]th Percentile",
           "range": true,
           "refId": "A",
           "useBackend": false
@@ -2894,7 +2882,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "sum(increase(mattermost_webapp_cumulative_layout_shift_count[24h]))",
+          "expr": "sum(increase(mattermost_webapp_cumulative_layout_shift_count{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[$__range]))",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -2905,7 +2893,7 @@
           "useBackend": false
         }
       ],
-      "title": "CLS (24h)",
+      "title": "CLS (Overall)",
       "type": "stat"
     },
     {
@@ -2956,8 +2944,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -2997,7 +2984,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "sum(increase(mattermost_webapp_first_contentful_paint_count[10m]))",
+          "expr": "sum(increase(mattermost_webapp_first_contentful_paint_count{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[10m]))",
           "format": "time_series",
           "fullMetaSearch": false,
           "hide": false,
@@ -3016,7 +3003,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "sum(increase(mattermost_webapp_largest_contentful_paint_count[10m]))",
+          "expr": "sum(increase(mattermost_webapp_largest_contentful_paint_count{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[10m]))",
           "format": "time_series",
           "fullMetaSearch": false,
           "hide": false,
@@ -3037,7 +3024,7 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
-      "description": "The 75th percentile of all Largest Contentful Paint measurements over the last 24 hours and the number of those measurements recorded over the same time period.\n\nTarget values:\n- Good: 2.5s\n- Needs Improvement: 4s",
+      "description": "The [[percentile]]th percentile of all Largest Contentful Paint measurements over the selected time period and the number of measurements taken during that time.\n\nTarget values for P75:\n- Good: 2.5s\n- Needs Improvement: 4s",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3048,8 +3035,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "#EAB839",
@@ -3117,12 +3103,12 @@
           "disableTextWrap": false,
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "histogram_quantile(0.75, sum by(le) (increase(mattermost_webapp_largest_contentful_paint_bucket[24h])))",
+          "expr": "histogram_quantile($percentile / 100, sum by(le) (increase(mattermost_webapp_largest_contentful_paint_bucket{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[$__range])))",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "75th Percentile",
+          "legendFormat": "[[percentile]]th Percentile",
           "range": true,
           "refId": "A",
           "useBackend": false
@@ -3134,7 +3120,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "sum(increase(mattermost_webapp_largest_contentful_paint_count[24h]))",
+          "expr": "sum(increase(mattermost_webapp_largest_contentful_paint_count{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[$__range]))",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -3145,7 +3131,7 @@
           "useBackend": false
         }
       ],
-      "title": "LCP (24h)",
+      "title": "LCP (Overall)",
       "type": "stat"
     },
     {
@@ -3196,8 +3182,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -3237,7 +3222,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "sum(increase(mattermost_webapp_interaction_to_next_paint_count[30m]))",
+          "expr": "sum(increase(mattermost_webapp_interaction_to_next_paint_count{namespace=~\"$namespace\",agent=~\"$agent\",platform=~\"$platform\"}[$decay]))",
           "format": "time_series",
           "fullMetaSearch": false,
           "hide": false,
@@ -3274,14 +3259,13 @@
     "list": []
   },
   "time": {
-    "from": "now-12h",
+    "from": "now-24h",
     "to": "now"
   },
-  "timeRangeUpdatedDuringEditOrView": false,
   "timepicker": {},
   "timezone": "",
   "title": "Web App Metrics",
   "uid": "adok91bti9pmof",
-  "version": 11,
+  "version": 29,
   "weekStart": ""
 }
