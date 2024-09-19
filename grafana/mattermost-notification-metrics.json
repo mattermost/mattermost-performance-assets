@@ -890,7 +890,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "sum(mattermost_notifications_total{type=\"push\", platform!=\"$platform\"}) OR vector(0)",
+          "expr": "sum(mattermost_notifications_total{type=\"push\", platform=~\"$platform\"}) OR vector(0)",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -907,7 +907,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "sum(mattermost_notifications_total_ack{type=\"push\", platform!=\"$platform\"}) OR vector(0)",
+          "expr": "sum(mattermost_notifications_total_ack{type=\"push\", platform=~\"$platform\"}) OR vector(0)",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -1368,6 +1368,7 @@
   "templating": {
     "list": [
       {
+        "allValue": ".*",
         "current": {
           "selected": true,
           "text": "All",
