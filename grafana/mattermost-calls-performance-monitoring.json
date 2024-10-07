@@ -26,10 +26,28 @@
   "__elements": {},
   "__requires": [
     {
+      "type": "panel",
+      "id": "barchart",
+      "name": "Bar chart",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "bargauge",
+      "name": "Bar gauge",
+      "version": ""
+    },
+    {
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
       "version": "10.4.2"
+    },
+    {
+      "type": "panel",
+      "id": "heatmap",
+      "name": "Heatmap",
+      "version": ""
     },
     {
       "type": "datasource",
@@ -1323,7 +1341,7 @@
       "gridPos": {
         "h": 8,
         "w": 12,
-        "x": 12,
+        "x": 0,
         "y": 41
       },
       "id": 61,
@@ -1999,6 +2017,441 @@
         "x": 0,
         "y": 74
       },
+      "id": 82,
+      "panels": [],
+      "title": "RTC - Client",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS_PROD}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 75
+      },
+      "id": 83,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS_PROD}"
+          },
+          "editorMode": "code",
+          "expr": "sum(mattermost_plugin_calls_client_ice_candidate_pairs_total{instance=~\"$calls:$calls_metrics_port\"}) by (state, local_type, remote_type, local_protocol, remote_protocol)",
+          "instant": false,
+          "legendFormat": "{{state}} - {{local_type}} - {{remote_type}} - {{remote_protocol}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "ICE Candidates",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS_PROD}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 75
+      },
+      "id": 84,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS_PROD}"
+          },
+          "editorMode": "code",
+          "expr": "rate(rtcd_rtc_client_rtt_sum{instance=~\"$rtcd:$rtcd_metrics_port\"}[2m]) / rate(rtcd_rtc_client_rtt_count{instance=~\"$rtcd:$rtcd_metrics_port\"}[2m])",
+          "instant": false,
+          "legendFormat": "avg - {{instance}}",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS_PROD}"
+          },
+          "editorMode": "code",
+          "expr": "histogram_quantile(0.99, sum(rate(rtcd_rtc_client_rtt_bucket{instance=~\"$rtcd:$rtcd_metrics_port\"}[2m])) by (le,instance))",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "p99 - {{instance}}",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Round Trip Times",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS_PROD}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 83
+      },
+      "id": 85,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS_PROD}"
+          },
+          "editorMode": "code",
+          "expr": "rate(rtcd_rtc_client_jitter_sum{instance=~\"$rtcd:$rtcd_metrics_port\"}[2m]) / rate(rtcd_rtc_client_jitter_count{instance=~\"$rtcd:$rtcd_metrics_port\"}[2m])",
+          "instant": false,
+          "legendFormat": "avg - {{instance}}",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS_PROD}"
+          },
+          "editorMode": "code",
+          "expr": "histogram_quantile(0.99, sum(rate(rtcd_rtc_client_jitter_bucket{instance=~\"$rtcd:$rtcd_metrics_port\"}[2m])) by (le,instance))",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "p99 - {{instance}}",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Jitter",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS_PROD}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 83
+      },
+      "id": 86,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS_PROD}"
+          },
+          "editorMode": "code",
+          "expr": "rate(rtcd_rtc_client_loss_rate_sum{instance=~\"$rtcd:$rtcd_metrics_port\"}[2m]) / rate(rtcd_rtc_client_loss_rate_count{instance=~\"$rtcd:$rtcd_metrics_port\"}[2m])",
+          "instant": false,
+          "legendFormat": "avg - {{instance}}",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS_PROD}"
+          },
+          "editorMode": "code",
+          "expr": "histogram_quantile(0.99, sum(rate(rtcd_rtc_client_loss_rate_bucket{instance=~\"$rtcd:$rtcd_metrics_port\"}[2m])) by (le,instance))",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "p99 - {{instance}}",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Loss Rates",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 91
+      },
       "id": 67,
       "panels": [],
       "title": "Networking",
@@ -2096,7 +2549,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 75
+        "y": 92
       },
       "id": 54,
       "options": {
@@ -2286,7 +2739,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 75
+        "y": 92
       },
       "id": 62,
       "options": {
@@ -2429,7 +2882,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 83
+        "y": 100
       },
       "id": 52,
       "options": {
@@ -2504,7 +2957,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 91
+        "y": 108
       },
       "id": 66,
       "panels": [],
@@ -2590,7 +3043,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 92
+        "y": 109
       },
       "id": 68,
       "options": {
@@ -2753,7 +3206,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 92
+        "y": 109
       },
       "id": 69,
       "options": {
@@ -2819,7 +3272,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 100
+        "y": 117
       },
       "id": 74,
       "panels": [],
@@ -2890,7 +3343,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 101
+        "y": 118
       },
       "id": 80,
       "options": {
@@ -2987,7 +3440,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 101
+        "y": 118
       },
       "id": 81,
       "options": {
@@ -3059,7 +3512,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 109
+        "y": 126
       },
       "id": 75,
       "options": {
@@ -3150,7 +3603,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 109
+        "y": 126
       },
       "id": 76,
       "options": {
@@ -3247,7 +3700,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 117
+        "y": 134
       },
       "id": 77,
       "options": {
@@ -3374,7 +3827,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 117
+        "y": 134
       },
       "id": 78,
       "options": {
@@ -3571,6 +4024,6 @@
   "timezone": "",
   "title": "Mattermost Calls - Performance Monitoring",
   "uid": "nwiOkDP45",
-  "version": 5,
+  "version": 6,
   "weekStart": ""
 }
