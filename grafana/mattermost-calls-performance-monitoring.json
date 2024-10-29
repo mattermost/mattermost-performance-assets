@@ -41,7 +41,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "10.4.2"
+      "version": "11.3.0"
     },
     {
       "type": "panel",
@@ -89,7 +89,6 @@
   "graphTooltip": 0,
   "id": null,
   "links": [],
-  "liveNow": false,
   "panels": [
     {
       "collapsed": false,
@@ -121,6 +120,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -183,7 +183,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
@@ -230,6 +230,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -294,7 +295,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
@@ -367,6 +368,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -429,7 +431,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
@@ -463,6 +465,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -525,7 +528,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
@@ -572,6 +575,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -633,6 +637,7 @@
           "sort": "none"
         }
       },
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
@@ -666,6 +671,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -727,6 +733,7 @@
           "sort": "none"
         }
       },
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
@@ -760,6 +767,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -844,6 +852,7 @@
           "sort": "none"
         }
       },
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
@@ -891,6 +900,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -948,30 +958,6 @@
                 "value": "right"
               }
             ]
-          },
-          {
-            "__systemRef": "hideSeriesFrom",
-            "matcher": {
-              "id": "byNames",
-              "options": {
-                "mode": "exclude",
-                "names": [
-                  "Handler time p99-GetAllCallsChannels"
-                ],
-                "prefix": "All except:",
-                "readOnly": true
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": true
-                }
-              }
-            ]
           }
         ]
       },
@@ -999,6 +985,7 @@
           "sort": "none"
         }
       },
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
@@ -1046,6 +1033,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -1115,6 +1103,7 @@
           "sort": "none"
         }
       },
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
@@ -1162,6 +1151,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -1231,6 +1221,7 @@
           "sort": "none"
         }
       },
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
@@ -1278,6 +1269,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -1357,6 +1349,7 @@
           "sort": "none"
         }
       },
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
@@ -1482,6 +1475,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -1544,7 +1538,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
@@ -1590,6 +1584,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -1652,7 +1647,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
@@ -1699,6 +1694,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -1761,7 +1757,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
@@ -1807,6 +1803,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -1871,6 +1868,7 @@
           "sort": "none"
         }
       },
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
@@ -1918,6 +1916,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -1980,7 +1979,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
@@ -2039,6 +2038,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -2100,6 +2100,7 @@
           "sort": "none"
         }
       },
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
@@ -2134,6 +2135,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -2196,6 +2198,7 @@
           "sort": "none"
         }
       },
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
@@ -2243,6 +2246,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -2305,6 +2309,7 @@
           "sort": "none"
         }
       },
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
@@ -2352,6 +2357,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -2414,6 +2420,7 @@
           "sort": "none"
         }
       },
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
@@ -2474,6 +2481,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -2564,6 +2572,7 @@
           "sort": "none"
         }
       },
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
@@ -2693,6 +2702,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -2754,6 +2764,7 @@
           "sort": "none"
         }
       },
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
@@ -2835,6 +2846,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -2899,6 +2911,7 @@
           "sort": "none"
         }
       },
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
@@ -2982,6 +2995,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -3062,7 +3076,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
@@ -3145,6 +3159,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -3225,7 +3240,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
@@ -3296,6 +3311,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -3358,7 +3374,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
@@ -3393,6 +3409,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -3457,7 +3474,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
@@ -3551,16 +3568,16 @@
           "unit": "ms"
         }
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS_PROD}"
           },
-          "editorMode": "builder",
+          "editorMode": "code",
           "exemplar": false,
-          "expr": "sum by(le) (increase(mattermost_plugin_calls_jobs_live_captions_new_audio_len_ms_bucket[$__rate_interval]))",
+          "expr": "sum by(le) (increase(mattermost_plugin_calls_jobs_live_captions_new_audio_len_ms_bucket{instance=~\"$calls:$calls_metrics_port\"}[$__rate_interval]))",
           "format": "heatmap",
           "instant": false,
           "legendFormat": "__auto",
@@ -3608,6 +3625,12 @@
       "id": 76,
       "options": {
         "displayMode": "gradient",
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
         "maxVizHeight": 300,
         "minVizHeight": 16,
         "minVizWidth": 8,
@@ -3624,7 +3647,7 @@
         "sizing": "auto",
         "valueMode": "color"
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
@@ -3632,9 +3655,9 @@
             "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
-          "editorMode": "builder",
+          "editorMode": "code",
           "exemplar": false,
-          "expr": "sum by(le) (increase(mattermost_plugin_calls_jobs_live_captions_new_audio_len_ms_bucket[1h]))",
+          "expr": "sum by(le) (increase(mattermost_plugin_calls_jobs_live_captions_new_audio_len_ms_bucket{instance=~\"$calls:$calls_metrics_port\"}[1h]))",
           "format": "heatmap",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -3724,14 +3747,15 @@
         "xTickLabelRotation": 0,
         "xTickLabelSpacing": 100
       },
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS_PROD}"
           },
-          "editorMode": "builder",
-          "expr": "sum by(job) (increase(mattermost_plugin_calls_jobs_live_captions_window_dropped[$__rate_interval]))",
+          "editorMode": "code",
+          "expr": "sum by(job) (increase(mattermost_plugin_calls_jobs_live_captions_window_dropped{instance=~\"$calls:$calls_metrics_port\"}[$__rate_interval]))",
           "legendFormat": "windows dropped",
           "range": true,
           "refId": "A"
@@ -3741,8 +3765,8 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS_PROD}"
           },
-          "editorMode": "builder",
-          "expr": "sum by(job) (increase(mattermost_plugin_calls_jobs_live_captions_transcriber_buf_full[$__rate_interval]))",
+          "editorMode": "code",
+          "expr": "sum by(job) (increase(mattermost_plugin_calls_jobs_live_captions_transcriber_buf_full{instance=~\"$calls:$calls_metrics_port\"}[$__rate_interval]))",
           "hide": false,
           "legendFormat": "transcriber buf full",
           "range": true,
@@ -3753,8 +3777,8 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS_PROD}"
           },
-          "editorMode": "builder",
-          "expr": "sum by(job) (rate(mattermost_plugin_calls_jobs_live_captions_pktPayloadCh_buf_full[$__rate_interval]))",
+          "editorMode": "code",
+          "expr": "sum by(job) (rate(mattermost_plugin_calls_jobs_live_captions_pktPayloadCh_buf_full{instance=~\"$calls:$calls_metrics_port\"}[$__rate_interval]))",
           "hide": false,
           "legendFormat": "packetChBuffFull",
           "range": true,
@@ -3781,6 +3805,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -3842,6 +3867,7 @@
           "sort": "none"
         }
       },
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
@@ -3849,8 +3875,8 @@
             "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "sum by(job) (increase(mattermost_plugin_calls_jobs_live_captions_window_dropped[15m]))",
+          "editorMode": "code",
+          "expr": "sum by(job) (increase(mattermost_plugin_calls_jobs_live_captions_window_dropped{instance=~\"$calls:$calls_metrics_port\"}[15m]))",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -3865,8 +3891,8 @@
             "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "sum by(job) (increase(mattermost_plugin_calls_jobs_live_captions_transcriber_buf_full[15m]))",
+          "editorMode": "code",
+          "expr": "sum by(job) (increase(mattermost_plugin_calls_jobs_live_captions_transcriber_buf_full{instance=~\"$calls:$calls_metrics_port\"}[15m]))",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -3882,8 +3908,8 @@
             "uid": "${DS_PROMETHEUS_PROD}"
           },
           "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "sum by(job) (rate(mattermost_plugin_calls_jobs_live_captions_pktPayloadCh_buf_full[15m]))",
+          "editorMode": "code",
+          "expr": "sum by(job) (rate(mattermost_plugin_calls_jobs_live_captions_pktPayloadCh_buf_full{instance=~\"$calls:$calls_metrics_port\"}[15m]))",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -3899,8 +3925,7 @@
     }
   ],
   "refresh": "",
-  "revision": 1,
-  "schemaVersion": 39,
+  "schemaVersion": 40,
   "tags": [],
   "templating": {
     "list": [
@@ -3911,7 +3936,6 @@
           "uid": "${DS_PROMETHEUS_PROD}"
         },
         "definition": "label_values(instance)",
-        "hide": 0,
         "includeAll": false,
         "label": "calls-instance",
         "multi": true,
@@ -3923,8 +3947,6 @@
         },
         "refresh": 1,
         "regex": "(.*):$calls_metrics_port",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       },
       {
@@ -3934,7 +3956,6 @@
           "uid": "${DS_PROMETHEUS_PROD}"
         },
         "definition": "label_values(instance)",
-        "hide": 0,
         "includeAll": false,
         "label": "rtcd-instance",
         "multi": true,
@@ -3946,16 +3967,13 @@
         },
         "refresh": 1,
         "regex": "(.*):$rtcd_metrics_port",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       },
       {
         "hide": 2,
-        "label": "",
         "name": "rtcd_metrics_port",
         "query": "${VAR_RTCD_METRICS_PORT}",
-        "skipUrlSync": false,
+        "skipUrlSync": true,
         "type": "constant",
         "current": {
           "value": "${VAR_RTCD_METRICS_PORT}",
@@ -3972,10 +3990,9 @@
       },
       {
         "hide": 2,
-        "label": "",
         "name": "calls_metrics_port",
         "query": "${VAR_CALLS_METRICS_PORT}",
-        "skipUrlSync": false,
+        "skipUrlSync": true,
         "type": "constant",
         "current": {
           "value": "${VAR_CALLS_METRICS_PORT}",
@@ -3997,7 +4014,6 @@
           "uid": "${DS_PROMETHEUS_PROD}"
         },
         "definition": "label_values(instance)",
-        "hide": 0,
         "includeAll": false,
         "label": "offloader-instance",
         "multi": true,
@@ -4010,8 +4026,6 @@
         },
         "refresh": 1,
         "regex": "(.*offloader.*):9100",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       }
     ]
@@ -4023,7 +4037,7 @@
   "timepicker": {},
   "timezone": "",
   "title": "Mattermost Calls - Performance Monitoring",
-  "uid": "nwiOkDP45",
-  "version": 6,
+  "uid": "nwiOk4545",
+  "version": 7,
   "weekStart": ""
 }
