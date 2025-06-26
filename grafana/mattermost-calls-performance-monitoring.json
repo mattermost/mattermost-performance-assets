@@ -1371,6 +1371,7 @@
           },
           "editorMode": "code",
           "expr": "histogram_quantile(0.99, sum(rate(mattermost_plugin_calls_cluster_mutex_grab_time_bucket{instance=~\"$calls:$calls_metrics_port\"}[2m])) by (group,le))",
+          "hide": false,
           "instant": false,
           "legendFormat": "Grab time p99-{{group}}",
           "range": true,
@@ -1889,7 +1890,7 @@
             "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
-          "expr": "rate(rtcd_rtc_rtp_tracks_writes_time_sum{instance=~\"$rtcd:$rtcd_metrics_port\"}[2m]) / rate(rtcd_rtc_rtp_tracks_writes_time_count{instance=~\"$rtcd:$rtcd_metrics_port\"}[2m])",
+          "expr": "rate(rtcd_rtc_rtp_tracks_writes_time_sum{instance=~\"$rtcd:$rtcd_metrics_port\"}[2m]) / (rate(rtcd_rtc_rtp_tracks_writes_time_count{instance=~\"$rtcd:$rtcd_metrics_port\"}[2m]) > 0)",
           "instant": false,
           "legendFormat": "avg - {{type}} - {{instance}}",
           "range": true,
@@ -2111,7 +2112,7 @@
             "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
-          "expr": "rate(rtcd_rtc_connection_time_sum{instance=~\"$rtcd:$rtcd_metrics_port\"}[2m]) / rate(rtcd_rtc_connection_time_count{instance=~\"$rtcd:$rtcd_metrics_port\"}[2m])",
+          "expr": "rate(rtcd_rtc_connection_time_sum{instance=~\"$rtcd:$rtcd_metrics_port\"}[2m]) / (rate(rtcd_rtc_connection_time_count{instance=~\"$rtcd:$rtcd_metrics_port\"}[2m]) > 0)",
           "instant": false,
           "legendFormat": "avg - {{instance}}",
           "range": true,
@@ -2224,7 +2225,7 @@
             "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
-          "expr": "rate(rtcd_rtc_signaling_lock_grab_time_sum{instance=~\"$rtcd:$rtcd_metrics_port\"}[2m]) / rate(rtcd_rtc_signaling_lock_grab_time_count{instance=~\"$rtcd:$rtcd_metrics_port\"}[2m])",
+          "expr": "rate(rtcd_rtc_signaling_lock_grab_time_sum{instance=~\"$rtcd:$rtcd_metrics_port\"}[2m]) / (rate(rtcd_rtc_signaling_lock_grab_time_count{instance=~\"$rtcd:$rtcd_metrics_port\"}[2m]) > 0)",
           "hide": false,
           "instant": false,
           "legendFormat": "avg - {{instance}}",
@@ -2338,7 +2339,7 @@
             "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
-          "expr": "rate(rtcd_rtc_signaling_lock_locked_time_sum{instance=~\"$rtcd:$rtcd_metrics_port\"}[2m]) / rate(rtcd_rtc_signaling_lock_locked_time_count{instance=~\"$rtcd:$rtcd_metrics_port\"}[2m])",
+          "expr": "rate(rtcd_rtc_signaling_lock_locked_time_sum{instance=~\"$rtcd:$rtcd_metrics_port\"}[2m]) / (rate(rtcd_rtc_signaling_lock_locked_time_count{instance=~\"$rtcd:$rtcd_metrics_port\"}[2m]) > 0)",
           "instant": false,
           "legendFormat": "avg - {{instance}}",
           "range": true,
@@ -2559,7 +2560,7 @@
             "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
-          "expr": "rate(rtcd_rtc_client_rtt_sum{instance=~\"$rtcd:$rtcd_metrics_port\"}[2m]) / rate(rtcd_rtc_client_rtt_count{instance=~\"$rtcd:$rtcd_metrics_port\"}[2m])",
+          "expr": "rate(rtcd_rtc_client_rtt_sum{instance=~\"$rtcd:$rtcd_metrics_port\"}[2m]) / (rate(rtcd_rtc_client_rtt_count{instance=~\"$rtcd:$rtcd_metrics_port\"}[2m]) > 0)",
           "instant": false,
           "legendFormat": "avg - {{instance}}",
           "range": true,
@@ -2670,7 +2671,7 @@
             "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
-          "expr": "rate(rtcd_rtc_client_jitter_sum{instance=~\"$rtcd:$rtcd_metrics_port\"}[2m]) / rate(rtcd_rtc_client_jitter_count{instance=~\"$rtcd:$rtcd_metrics_port\"}[2m])",
+          "expr": "rate(rtcd_rtc_client_jitter_sum{instance=~\"$rtcd:$rtcd_metrics_port\"}[2m]) / (rate(rtcd_rtc_client_jitter_count{instance=~\"$rtcd:$rtcd_metrics_port\"}[2m]) > 0)",
           "instant": false,
           "legendFormat": "avg - {{instance}}",
           "range": true,
@@ -2781,7 +2782,7 @@
             "uid": "${DS_PROMETHEUS_PROD}"
           },
           "editorMode": "code",
-          "expr": "rate(rtcd_rtc_client_loss_rate_sum{instance=~\"$rtcd:$rtcd_metrics_port\"}[2m]) / rate(rtcd_rtc_client_loss_rate_count{instance=~\"$rtcd:$rtcd_metrics_port\"}[2m])",
+          "expr": "rate(rtcd_rtc_client_loss_rate_sum{instance=~\"$rtcd:$rtcd_metrics_port\"}[2m]) / (rate(rtcd_rtc_client_loss_rate_count{instance=~\"$rtcd:$rtcd_metrics_port\"}[2m]) > 0)",
           "instant": false,
           "legendFormat": "avg - {{instance}}",
           "range": true,
@@ -2877,34 +2878,7 @@
           },
           "unit": "short"
         },
-        "overrides": [
-          {
-            "__systemRef": "hideSeriesFrom",
-            "matcher": {
-              "id": "byNames",
-              "options": {
-                "mode": "exclude",
-                "names": [
-                  "rtcd - rtcd-0:9100 - Out - IPv4",
-                  "rtcd - rtcd-0:9100 - Errors - IPv4",
-                  "rtcd - rtcd-0:9100 - In - IPv4"
-                ],
-                "prefix": "All except:",
-                "readOnly": true
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": true
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 8,
@@ -4391,6 +4365,6 @@
   "timezone": "",
   "title": "Mattermost Calls - Performance Monitoring",
   "uid": "nwiOk4545",
-  "version": 9,
+  "version": 10,
   "weekStart": ""
 }
